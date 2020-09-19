@@ -41,10 +41,12 @@ app.use(express.static('public'));
 // Separated Routes for each Resource
 const loginRoute = require('./routes/login.route');
 const mapRoute = require('./routes/map.route');
+const pinRoute = require('./routes/pin.route');
 
 // Mount all resource routes
 app.use('/api/login', loginRoute(db));
 app.use('/api/map', mapRoute(db));
+app.use('/api/pin', pinRoute(db));
 
 // logout route
 app.get('/logout', (req, res) => {
