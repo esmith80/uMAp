@@ -27,7 +27,7 @@ module.exports = {
 
     return db
       .query(searchQuery, [title, map_description, city, category])
-      .then(({ rows: newMap }) => newMap);
+      .then(({ rows: newMap }) => newMap[0]);
   },
 
   updateMapByID: (queryValues, id, db) => {
