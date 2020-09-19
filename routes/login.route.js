@@ -23,7 +23,7 @@ module.exports = (db) => {
         };
         res.status(200).json({ msg: 'Success' });
       })
-      .catch((err) => res.status(400).json({ msg: err.msg }));
+      .catch((err) => res.status(400).json({ msg: err }));
   });
 
   return router;
