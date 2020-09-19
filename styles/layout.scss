@@ -1,5 +1,39 @@
 // See: https://sass-lang.com/
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$primary-color: 	#3CB371;
+
+a {
+  text-decoration: none;
+}
+
+header{
+  background-color: $primary-color;
+  height: 100px;
+  padding: 20px;
+  nav {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style-type: none;
+
+      li {
+        padding: 15px;
+      }
+    }
+  }
+
+}
+
 body {
   background-color: #EEE;
 
