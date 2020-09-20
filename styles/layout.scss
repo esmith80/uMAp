@@ -16,6 +16,8 @@ header{
   background-color: $primary-color;
   height: 100px;
   padding: 20px;
+  width: 100%;
+
   nav {
     display: flex;
     justify-content:space-between;
@@ -32,6 +34,61 @@ header{
     }
   }
 
+  a {
+    color: white;
+  }
+
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    padding:10px;
+  }
+
+  .map-lists {
+    width: 40%;
+    background-color: white;
+    padding: 10px;
+    height: 65vh;
+
+    ul {
+      list-style-type: none;
+      padding: 15px;
+      width:100%;
+
+      li {
+        padding:10px;
+        display:flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .map {
+    width:50%;
+    margin: 10px 10px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom:0;
+  background-color: $primary-color;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
 }
 
 body {
