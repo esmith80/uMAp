@@ -50,6 +50,9 @@ app.use('/api/map', mapRoute(db));
 app.use('/api/pin', pinRoute(db));
 app.use('/api/comment', mapReviewsRoute(db));
 
+app.get('/', (req, res) => {
+  res.json({ msg: 'Main page' });
+});
 // logout route
 app.get('/logout', (req, res) => {
   req.session.user = '';
