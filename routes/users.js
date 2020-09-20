@@ -1,3 +1,5 @@
+// THIS IS A TEST COMMENT TESTING GIT made by ED SMITH at 1:46PM on Sunday
+
 /*
  * All routes for Users are defined here
  * Since this file is loaded in server.js into api/users,
