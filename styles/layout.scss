@@ -1,5 +1,96 @@
 // See: https://sass-lang.com/
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$primary-color: 	#3CB371;
+
+a {
+  text-decoration: none;
+}
+
+header{
+  background-color: $primary-color;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+
+  nav {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style-type: none;
+
+      li {
+        padding: 15px;
+      }
+    }
+  }
+
+  a {
+    color: white;
+  }
+
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    padding:10px;
+  }
+
+  .map-lists {
+    width: 40%;
+    background-color: white;
+    padding: 10px;
+    height: 65vh;
+
+    ul {
+      list-style-type: none;
+      padding: 15px;
+      width:100%;
+
+      li {
+        padding:10px;
+        display:flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .map {
+    width:50%;
+    margin: 10px 10px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom:0;
+  background-color: $primary-color;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+}
+
 body {
   background-color: #EEE;
 

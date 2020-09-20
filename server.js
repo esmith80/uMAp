@@ -50,6 +50,14 @@ app.use('/api/map', mapRoute(db));
 app.use('/api/pin', pinRoute(db));
 app.use('/api/comment', mapReviewsRoute(db));
 
+<<<<<<< HEAD
+// Home page
+// Warning: avoid creating more routes in this file!
+// Separate them into separate routes files (see above).
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+=======
 app.get('/', (req, res) => {
   res.json({ msg: 'Main page' });
 });
@@ -58,6 +66,7 @@ app.get('/logout', (req, res) => {
   req.session.user = '';
   res.redirect('/');
 });
+>>>>>>> 35e831ea872983a7e83d9f7a9c8f5ca7b49b0518
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
