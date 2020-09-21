@@ -1,0 +1,159 @@
+header {
+  background-color: #3CB371;
+  padding: 10px;
+  width: 100%;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style-type: none;
+}
+
+header nav ul li {
+  padding: 10px;
+}
+
+header a {
+  color: white;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #3CB371;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+}
+
+.map-lists {
+  width: 60vw;
+  background-color: white;
+  padding: 10px;
+  height: 85vh;
+  margin: 0 auto;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  overflow: scroll;
+  background-color: #f2f2f2;
+}
+
+.map-lists ul {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: .5em;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  padding: .5em .5em;
+  list-style-type: none;
+  width: 96%;
+  height: 90%;
+  margin: 0 auto;
+}
+
+.map-lists ul li {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.map {
+  width: 25%;
+  margin: 10px 10px;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.map img {
+  width: 100%;
+  height: auto;
+}
+
+.card-image-url {
+  width: 90%;
+  height: 65%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.cards-list {
+  width: 92%;
+  margin: 0 auto;
+}
+
+.card {
+  width: 96%;
+  margin: 0 auto;
+  height: 100%;
+  text-align: center;
+}
+
+.card-desc h4 {
+  margin-top: 5px;
+}
+
+.card-desc p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 96%;
+  margin: 20px auto;
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container h2 {
+  padding: 10px;
+}
+
+body {
+  background-color: #EEE;
+  height: 100vh;
+  width: 100vw;
+}
+
+body h1 {
+  color: #244751;
+}
+/*# sourceMappingURL=layout.css.map */
