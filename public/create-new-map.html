@@ -15,9 +15,29 @@
   </head>
   <body>
     <div id="new-map-form">
-      <form>
-        Enter your location (or keep current location)
-        <input type='text'>
+      Enter data to create a new map in the database (test only for now - we will eventually pull this data directly from the DOM using jQuery):
+      <form action="/new_map" method="POST">
+
+        <label for="title">title</label>
+        <input type="text" id="title"><br>
+
+        <label for="map_description">map_description</label>
+        <input type="text" id="map_description"><br>
+
+        <label for="city">city</label>
+        <input type="text" id="city"><br>
+
+        <label for="category">category</label>
+        <input type="text" id="category"><br>
+
+        <label for="map_centre_latitude">map_centre_latitude</label>
+        <input type="text" id="map_centre_latitude"><br>
+
+        <label for="map_centre_longitude">map_centre_longitude</label>
+        <input type="text" id="map_centre_longitude"><br>
+
+        <label for="send to database"></label>
+        <input type="submit">
       </form>
 
 

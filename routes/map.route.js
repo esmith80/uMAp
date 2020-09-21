@@ -34,7 +34,7 @@ module.exports = (db) => {
       );
   });
 
-  router.post('/', (req, res) => {
+  router.post('/new_map', (req, res) => {
     const user = req.session.user;
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
