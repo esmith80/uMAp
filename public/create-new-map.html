@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!-- javascript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly" defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="./styles/create-new-map-style.css" />
+    <script src="./scripts/addNewMap.js"></script>
+  </head>
+  <body>
+    <div id="new-map-form">
+      <form>
+        Enter your location (or keep current location)
+        <input type='text'>
+      </form>
+
+
+    </div>
+    <div id="map"></div>
+  </body>
+</html>

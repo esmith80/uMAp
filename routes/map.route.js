@@ -3,7 +3,7 @@ const router = Router();
 const {
   getMapsByUserId,
   getMapByID,
-  creareNewMap,
+  createNewMap,
   updateMapByID,
   deleteMapByID,
 } = require('../db/queries/map.queries');
@@ -42,7 +42,7 @@ module.exports = (db) => {
     const { userId } = req.session.user;
     const queryParams = [req.body, userId];
 
-    creareNewMap(queryParams, db)
+    createNewMap(queryParams, db)
       .then((newMap) => res.status(200).json(newMap))
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });
