@@ -12,6 +12,7 @@ function initMap() {
     });
 
 // an added commment by Ed
+// added another comment
   }, () => {
     // if getCurrentPosition is not successful (if user blocks location tracking)
     map = new google.maps.Map(document.getElementById("map"), {
