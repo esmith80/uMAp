@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: #3CB371;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+header nav ul li {
+  padding: 15px;
+}
+header a {
+  color: white;
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.container h2 {
+  padding: 10px;
+}
+.container .map-lists {
+  width: 40%;
+  background-color: white;
+  padding: 10px;
+  height: 65vh;
+}
+.container .map-lists ul {
+  list-style-type: none;
+  padding: 15px;
+  width: 100%;
+}
+.container .map-lists ul li {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .map {
+  width: 50%;
+  margin: 10px 10px;
+}
+.container .map img {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #3CB371;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+}
+
+body {
+  background-color: #EEE;
+}
+body h1 {
+  color: #244751;
+}
+
+/*# sourceMappingURL=styles.layout.css.map */
