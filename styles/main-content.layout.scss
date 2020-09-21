@@ -1,0 +1,74 @@
+.map-lists {
+  width: 60vw;
+  background-color: white;
+  padding: 10px;
+  height: 85vh;
+  margin: 0 auto;
+  order: 2;
+  overflow: scroll;
+  background-color: #f2f2f2;
+
+
+
+  ul {
+    display: grid;
+    grid-gap: .5em;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: .5em .5em;
+    list-style-type: none;
+    width: 96%;
+    height: 90%;
+    margin: 0 auto;
+
+
+
+    li {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: #fff;
+    }
+  }
+}
+
+.map {
+  width: 25%;
+  margin: 10px 10px;
+  order: 1;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.card-image {
+  width: 90%;
+  height: 65%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.cards-list {
+  width: 92%;
+  margin: 0 auto;
+}
+
+.card {
+  width: 96%;
+  margin: 0 auto;
+  height: 100%;
+  text-align: center;
+}
+
+.card-desc {
+  h4 {
+    margin-top: 5px;
+
+  }
+
+  p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

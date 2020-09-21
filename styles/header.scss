@@ -1,0 +1,28 @@
+@import './vars';
+
+header {
+  background-color: $primary-color;
+  padding: 10px;
+  width: 100%;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style-type: none;
+
+      li {
+        padding: 10px;
+      }
+    }
+  }
+
+  a {
+    color: white;
+  }
+
+}
