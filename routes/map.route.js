@@ -34,13 +34,13 @@ module.exports = (db) => {
       );
   });
 
-  router.post('/new_map', (req, res) => {
-    const user = req.session.user;
-    if (!user) {
-      return res.status(400).json({ msg: 'User should be logged in!' });
-    }
-    const { userId } = req.session.user;
-    const queryParams = [req.body, userId];
+  router.post('/new', (req, res) => {
+    // const user = req.session.user;
+    // if (!user) {
+    //   return res.status(400).json({ msg: 'User should be logged in!' });
+    // }
+    // const { userId } = req.session.user;
+    const queryParams = [req.body, 1];
 
     createNewMap(queryParams, db)
       .then((newMap) => res.status(200).json(newMap))
