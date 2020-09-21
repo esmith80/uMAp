@@ -1,74 +1,93 @@
-.map-lists {
-  width: 60vw;
-  background-color: white;
-  padding: 10px;
-  height: 85vh;
-  margin: 0 auto;
-  order: 2;
-  overflow: scroll;
-  background-color: #f2f2f2;
-
-
-
-  ul {
-    display: grid;
-    grid-gap: .5em;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: .5em .5em;
-    list-style-type: none;
-    width: 96%;
-    height: 90%;
-    margin: 0 auto;
-
-
-
-    li {
-      border: 1px solid black;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: #fff;
-    }
-  }
-}
-
-.map {
-  width: 25%;
-  margin: 10px 10px;
-  order: 1;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-.card-image {
-  width: 90%;
-  height: 65%;
-  margin: 0 auto;
-  border: 1px solid black;
-}
+@import 'vars';
 
 .cards-list {
-  width: 92%;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-gap: 40px;
+  margin-top: 5%;
+  padding: 2%;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
 }
 
 .card {
-  width: 96%;
-  margin: 0 auto;
-  height: 100%;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 13em 13em 4.5em;
+  grid-template-areas: 'image''text''stats';
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 9px 9px 15px -2px rgba(0, 0, 0, 0.52);
+  cursor: pointer;
+  transition: .5s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
-.card-desc {
-  h4 {
-    margin-top: 5px;
 
-  }
+.card-image {
+  grid-area: image;
+  background: url('https://picsum.photos/350/210');
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background-size: cover;
+  position: relative;
+}
+
+.card-text {
+  grid-area: text;
+  margin: 25px;
 
   p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    color: #333;
+    font-weight: 400;
   }
+}
+
+
+
+.card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  background-color: $primary-color;
+
+  .stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    color: #fff;
+  }
+
+  .type {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .value {
+    font-size: 20px;
+  }
+}
+
+
+.card-like-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: red;
+  background-color: #fff;
+  font-size: 20px;
+  border-radius: 45%;
+  padding: 5px;
 }
