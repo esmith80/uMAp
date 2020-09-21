@@ -11,7 +11,7 @@ function initMap() {
       zoom: 16
     });
 
-
+// an added commment by Ed
   }, () => {
     // if getCurrentPosition is not successful (if user blocks location tracking)
     map = new google.maps.Map(document.getElementById("map"), {
