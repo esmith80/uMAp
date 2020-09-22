@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Simple Map</title>
 
@@ -11,37 +12,63 @@
 
 
     <link rel="stylesheet" type="text/css" href="./styles/create-new-map-style.css" />
-    <script src="./scripts/addNewMap.js"></script>
   </head>
+
   <body>
     <div id="new-map-form">
-      Enter data to create a new map in the database (test only for now - we will eventually pull this data directly from the DOM using jQuery):
-      <form action="/new_map" method="POST">
+
+      <form action="/new" method="POST">
+        New Map Data<br>
 
         <label for="title">title</label>
-        <input type="text" id="title"><br>
+        <input type="text" name="title"><br>
 
         <label for="map_description">map_description</label>
-        <input type="text" id="map_description"><br>
+        <input type="text" name="map_description"><br>
 
-        <label for="city">city</label>
-        <input type="text" id="city"><br>
+        <label for="map_city">map_city</label>
+        <input id="city-autocomplete" placeholder="Enter a city" type="text" /><br>
 
         <label for="category">category</label>
-        <input type="text" id="category"><br>
+        <input type="text" name="category"><br>
 
-        <label for="map_centre_latitude">map_centre_latitude</label>
-        <input type="text" id="map_centre_latitude"><br>
-
-        <label for="map_centre_longitude">map_centre_longitude</label>
-        <input type="text" id="map_centre_longitude"><br>
-
-        <label for="send to database"></label>
-        <input type="submit">
+        <label for="send map to database">send map to database</label>
+        <input type="submit" class="test_button"><br>
       </form>
-
-
     </div>
+
+    <div >
+      <form id="new-point-form">
+        New Point Data<br>
+
+        <label for="point-title">point-title</label>
+        <input type="text" name="point-title"><br>
+
+        <label for="point-description">map_description</label>
+        <input type="text" name="point-description"><br>
+
+        <label for="point-image-url">point-image-url</label>
+        <input type="text" name="point-image-url"><br>
+
+        <label for="point-latitude">point-latitude</label>
+        <input type="text" name="point-latitude"><br>
+
+        <label for="point-longitude">point-longitude</label>
+        <input type="text" name="point-longitude"><br>
+
+        <label for="send point to database">send point to database</label>
+        <input type="submit" class="point-submit-button"><br>
+      </form>
+    </div>
+
+
     <div id="map"></div>
-  </body>
-</html>
+
+
+    <!-- <script src=“https://code.jquery.com/jquery-3.5.1.js” integrity=“sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=” -->
+      <!-- crossorigin=“anonymous”></script> -->
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="./scripts/createNewMap.js"></script>
+    </body>
+
+    </html>

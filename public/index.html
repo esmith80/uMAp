@@ -27,6 +27,23 @@
   </header>
 
   <main class="container">
+    <form action="/api/map/new" method="POST" class="submission_form">
+
+      <label for="title">title</label>
+      <input type="text" name="title"><br>
+
+      <label for="map_description">map_description</label>
+      <input type="text" name="map_description"><br>
+
+      <label for="city">city</label>
+      <input type="text" name="city"><br>
+
+      <label for="category">category</label>
+      <input type="text" name="category"><br>
+
+      <label for="send to database"></label>
+      <input type="submit" class="test_button">
+    </form>
     <div class="cards-list">
       <div class="card">
         <div class="card-image"><span class="card-like-icon"><i class="far fa-heart"></i></span></div>
@@ -176,8 +193,8 @@
         </footer> -->
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-  <script src="./scripts//carousel-effect.js"></script>
   <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+  <script src="./scripts/addNewMap.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+/*
 let map;
 
 function initMap() {
@@ -11,17 +12,26 @@ function initMap() {
       zoom: 16
     });
 
-// an added commment by Ed
-// added another comment
+
   }, () => {
     // if getCurrentPosition is not successful (if user blocks location tracking)
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 0, lng: 0 },
       zoom: 1
     });
-
   }
-
-
   );
 }
+*/
+
+
+
+
+$(".submission_form").submit( function (event) {
+  event.preventDefault();
+
+  const serializedData = $(this).serialize();
+  $.post("/api/map/new", serializedData);
+});
+
+

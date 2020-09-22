@@ -16,17 +16,17 @@ module.exports = {
   },
 
   createNewMap: (queryParams, db) => {
-    const { title, map_description, city, category, map_centre_latitude, map_centre_longitude } = queryParams;
+    const { title, map_description, userId, city, category } = queryParams[0];
 
     const searchQuery = `
     INSERT INTO
-      maps(title, map_description, user_id, city, category, map_centre_latitude, map_centre_longitude)
+      maps(title, map_description, user_id, city, category)
     VALUES
-    ($1, $2, $3, $4, $5, $6, $7)
+    ($1, $2, $3, $4, $5)
     RETURNING *;`;
 
     return db // added user_id to next line
-      .query(searchQuery, [title, map_description, user_id, city, category, map_centre_latitude, map_centre_longitude])
+      .query(searchQuery, [title, map_description, userId, city, category])
       .then(({ rows: newMap }) => newMap[0]);
   },
 
