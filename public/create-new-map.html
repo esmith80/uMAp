@@ -37,31 +37,33 @@
       </form>
     </div>
 
-    <div >
-      <form id="new-point-form">
+    <div id="map"></div>
+    <button id="add-point-button">Add Point</button>
+    <div id="new-point-form">
+      <form id="point-form">
         New Point Data<br>
 
         <label for="point-title">point-title</label>
-        <input type="text" name="point-title"><br>
+        <input type="text" name="point-title" id="point-title"><br>
 
         <label for="point-description">map_description</label>
-        <input type="text" name="point-description"><br>
+        <input type="text" name="point-description" id="point-description"><br>
 
         <label for="point-image-url">point-image-url</label>
-        <input type="text" name="point-image-url"><br>
+        <input type="text" name="point-image-url" id="point-image-url"><br>
 
         <label for="point-latitude">point-latitude</label>
-        <input type="text" name="point-latitude"><br>
+        <input type="text" name="point-latitude" id="point-latitude"><br>
 
         <label for="point-longitude">point-longitude</label>
-        <input type="text" name="point-longitude"><br>
+        <input type="text" name="point-longitude" id="point-longitude"><br>
 
-        <label for="send point to database">send point to database</label>
-        <input type="submit" class="point-submit-button"><br>
+        <input type="submit" id="point-submit-button" value="Save Point"><br>
       </form>
     </div>
 
-    <div id="map"></div>
+    <div id="saved-points"></div>
+
 
       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
       <script src="./scripts/createNewMap.js"></script>
