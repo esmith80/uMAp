@@ -15,15 +15,15 @@ module.exports = (db) => {
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
     }
-
-    getMapsByUserId(user.userId, db).then((userMaps) => {
-      res
-        .status(200)
-        .json({ userMaps })
-        .catch((err) =>
-          res.status(500).json({ msg: 'failed to load maps table' })
-        );
-    });
+    getMapsByUserId(user.userId, db)
+      .then((userMaps) => {
+        console.log('usr maps', userMaps);
+        const vars = { user, userMaps };
+        res.render('index', vars);
+      })
+      .catch((err) =>
+        res.status(500).json({ msg: 'failed to load maps table' })
+      );
   });
 
   router.get('/:id', (req, res) => {

@@ -9,11 +9,12 @@ VALUES
 
 INSERT INTO
   maps
-  (title, user_id, map_description, map_centre_latitude, map_centre_longitude)
+  (title, user_id, map_description)
 VALUES
-  ('Edmonton', 1, 'Edmonton map description', 53.5461, -113.4938), -- Edmonton
-  ('Calgary', 2, 'Calgary map description', 51.0447, -114.0719), -- Calgary
-  ('Vancouver', 3, 'Vancouver map description', 49.2827, -123.1207); -- Vancouver
+  ('Edmonton', 1, 'Edmonton map description'),
+  ('Calgary', 1, 'Calgary map description'),
+  ('Vancouver', 1, 'Vancouver map description'),
+  ('Halifax', 1, 'Vancouver map description');
 
 INSERT INTO
   map_reviews

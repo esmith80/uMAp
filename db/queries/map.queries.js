@@ -3,7 +3,7 @@ const { removeLastCommaBeforeWhere } = require('../../utils/helperFunctions');
 module.exports = {
   getMapsByUserId: (userId, db) => {
     const searchQuery = `SELECT * FROM maps WHERE user_id = $1`;
-
+    console.log('userid', userId);
     return db
       .query(searchQuery, [userId])
       .then(({ rows: userMaps }) => userMaps);
