@@ -185,6 +185,31 @@
         </div>
       </div>
     </div>
+
+
+    <form class="form" action="/api/map/new" method="POST">
+
+      <label for="title">title</label>
+      <input type="text" name="title" id="title"><br>
+
+      <label for="map_description">map_description</label>
+      <input type="text" name="map_description" id="map_description"><br>
+
+      <label for="city">city</label>
+      <input type="text" name="city" id="city"><br>
+
+      <label for="category">category</label>
+      <input type="text" name="category" id="category"><br>
+
+      <label for="map_centre_latitude">map_centre_latitude</label>
+      <input type="text" name="map_centre_latitude" id="map_centre_latitude"><br>
+
+      <label for="map_centre_longitude">map_centre_longitude</label>
+      <input type="text" name="map_centre_longitude" id="map_centre_longitude"><br>
+
+      <label for="send to database"></label>
+      <input class="new-map-btn" type="submit">
+    </form>
     </div>
 
   </main>
@@ -195,6 +220,7 @@
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
   <script src="./scripts/addNewMap.js"></script>
+  <script src="./scripts/createNewMap.js"></script>
 </body>
 
 </html>

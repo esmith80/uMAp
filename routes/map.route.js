@@ -37,7 +37,7 @@ module.exports = (db) => {
   router.post('/new', (req, res) => {
     // const user = req.session.user;
     // if (!user) {
-      // return res.status(400).json({ msg: 'User should be logged in!' });
+    //   return res.status(400).json({ msg: 'User should be logged in!' });
     // }
     // const { userId } = req.session.user;
     const queryParams = [req.body, 1];

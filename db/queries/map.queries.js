@@ -17,7 +17,6 @@ module.exports = {
 
   createNewMap: (queryParams, db) => {
     const { title, map_description, userId, city, category } = queryParams[0];
-
     const searchQuery = `
     INSERT INTO
       maps(title, map_description, user_id, city, category)
