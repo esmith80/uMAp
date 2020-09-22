@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/layout.css" type="text/css" />
+  <title>Umap</title>
+</head>
+<body>
+  <header>
+    <div class="nav-main">
+      <nav>
+        <h1 class="logo">UMap</h1>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Create New Map</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#"> Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class = "top-map">
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -25.344, lng: 131.036};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqh4-S75T4tfHb6oG2K2svhV80l19Hudo&callback=initMap">
+    </script>
+
+    <div class = "marker-list">
+      <div class = "marker-list-item">
+        <h5>Title</h5>
+        <div class = "marker-item-bottom">
+          <div class = "marker-description">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad repellat maiores ducimus consequuntur ipsum
+              suscipit!</p>
+          </div>
+          <div class = "marker-image-url">
+            IMG
+          </div>
+        </div>
+      </div>
+
+      <div class = "marker-list-item">
+        <h5>Title</h5>
+        <div class = "marker-item-bottom">
+          <div class = "marker-description">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad repellat maiores ducimus consequuntur ipsum
+              suscipit!</p>
+          </div>
+          <div class = "marker-image-url">
+            IMG
+          </div>
+        </div>
+      </div>
+      <div class = "marker-list-item">
+        <h5>Title</h5>
+        <div class = "marker-item-bottom">
+          <div class = "marker-description">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad repellat maiores ducimus consequuntur ipsum
+              suscipit!</p>
+          </div>
+          <div class = "marker-image-url">
+            IMG
+          </div>
+        </div>
+      </div>
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>

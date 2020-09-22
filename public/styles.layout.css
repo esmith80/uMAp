@@ -1,17 +1,6 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
 header {
   background-color: #3CB371;
-  height: 100px;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
 }
 header nav {
@@ -25,46 +14,10 @@ header nav ul {
   list-style-type: none;
 }
 header nav ul li {
-  padding: 15px;
+  padding: 10px;
 }
 header a {
   color: white;
-}
-
-.container {
-  display: flex;
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-}
-.container h2 {
-  padding: 10px;
-}
-.container .map-lists {
-  width: 40%;
-  background-color: white;
-  padding: 10px;
-  height: 65vh;
-}
-.container .map-lists ul {
-  list-style-type: none;
-  padding: 15px;
-  width: 100%;
-}
-.container .map-lists ul li {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-.container .map {
-  width: 50%;
-  margin: 10px 10px;
-}
-.container .map img {
-  width: 100%;
-  height: auto;
 }
 
 footer {
@@ -76,8 +29,159 @@ footer {
   width: 100%;
 }
 
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-gap: 40px;
+  margin-top: 5%;
+  padding: 2%;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 13em 13em 4.5em;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 9px 9px 15px -2px rgba(0, 0, 0, 0.52);
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card-image {
+  grid-area: image;
+  background: url("https://picsum.photos/350/210");
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background-size: cover;
+  position: relative;
+}
+
+.card-text {
+  grid-area: text;
+  margin: 25px;
+}
+.card-text p {
+  color: #333;
+  font-weight: 400;
+}
+
+.card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  background-color: #3CB371;
+}
+.card-stats .stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  color: #fff;
+}
+.card-stats .type {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.card-stats .value {
+  font-size: 20px;
+}
+
+.card-like-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: red;
+  background-color: #fff;
+  font-size: 20px;
+  border-radius: 45%;
+  padding: 5px;
+}
+
+.top-map {
+  display: flex;
+  margin: 15px;
+  width: 96vw;
+  justify-content: space-evenly;
+}
+.top-map .single-map {
+  flex-basis: 75%;
+}
+.top-map #map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
+.top-map .marker-list {
+  flex-basis: 20%;
+  border-radius: 18px;
+}
+.top-map .marker-list .marker-list-item {
+  border: 0.5px solid black;
+  height: 15vh;
+  background-color: white;
+}
+.top-map .marker-list .marker-list-item h5 {
+  margin: 5px;
+}
+.top-map .marker-list .marker-list-item p {
+  font-size: 12px;
+  margin: 5px;
+}
+.top-map .marker-item-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 8px;
+}
+.top-map .marker-image-url {
+  height: 40px;
+  width: 25%;
+  border: 0.5px solid black;
+}
+.top-map .marker-image-url img {
+  width: 100%;
+  height: 40px;
+}
+.top-map .marker-list-item:hover {
+  background-color: #ebebeb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 96vw;
+  margin: 0 auto;
+  position: relative;
+}
+
 body {
-  background-color: #EEE;
+  background-color: #f4f4f4;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
 }
 body h1 {
   color: #244751;
