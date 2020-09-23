@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Simple Map</title>
+  <head>
+    <title>Simple Map</title>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-  <!-- javascript -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly"
-    defer></script>
-  <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script>
+    <!-- javascript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly" defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./styles/create-new-map-style.css" />
+  </head>
+
+  <body>
+    <div id="new-map-form">
+
+      <form action="/new" method="POST">
+        New Map Data<br>
+
+        <label for="map_title">map_title</label>
+        <input type="text" name="map_title"><br>
+
+        <label for="map_description">map_description</label>
+        <input type="text" name="map_description"><br>
+
+        <label for="map_city">map_city</label>
+        <input id="city-autocomplete" placeholder="Enter a city" type="text" /><br>
+
+        <label for="map_category">category</label>
+        <input type="text" name="map_category"><br>
+
+        <label for="send map to database">send map to database</label>
+        <input type="submit" class="test_button"><br>
+      </form>
+    </div>
+
+    <div id="map"></div>
+    <button id="add-point-button">Add Point</button>
+    <div id="new-point-form">
+      <form id="point-form">
+        New Point Data<br>
+
+        <label for="point-title">point-title</label>
+        <input type="text" name="point-title" id="point-title"><br>
+
+        <label for="point-description">map_description</label>
+        <input type="text" name="point-description" id="point-description"><br>
+
+        <label for="point-image-url">point-image-url</label>
+        <input type="text" name="point-image-url" id="point-image-url"><br>
+
+        <label for="point-latitude">point-latitude</label>
+        <input type="text" name="point-latitude" id="point-latitude"><br>
+
+        <label for="point-longitude">point-longitude</label>
+        <input type="text" name="point-longitude" id="point-longitude"><br>
+
+        <input type="submit" id="point-submit-button" value="Save Point"><br>
+      </form>
+    </div>
+
+    <div id="saved-points"></div>
 
 
-  <link rel="stylesheet" type="text/css" href="./styles/create-new-map-style.css" />
-  <script src="./scripts/addNewMap.js"></script>
-</head>
-
-<body>
-  <div id="new-map-form">
-    Enter data to create a new map in the database (test only for now - we will eventually pull this data directly from
-    the DOM using jQuery):
-    <form action="/api/map/new" method="POST">
-
-      <label for="title">title</label>
-      <input type="text" name="title" id="title"><br>
-
-      <label for="map_description">map_description</label>
-      <input type="text" name="map_description" id="map_description"><br>
-
-      <label for="city">city</label>
-      <input type="text" name="city" id="city"><br>
-
-      <label for="category">category</label>
-      <input type="text" name="category" id="category"><br>
-
-      <label for="map_centre_latitude">map_centre_latitude</label>
-      <input type="text" name="map_centre_latitude" id="map_centre_latitude"><br>
-
-      <label for="map_centre_longitude">map_centre_longitude</label>
-      <input type="text" name="map_centre_longitude" id="map_centre_longitude"><br>
-
-      <label for="send to database"></label>
-      <input class="new-map-btn" type="submit">
-    </form>
-
-
-  </div>
-  <div id="map"></div>
-  <script src="./scripts/addNewMap.js"></script>
-</body>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="./scripts/createNewMap.js"></script>
+  </body>
 
 </html>
