@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly"
+    defer></script>
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+</head>
+
+<body>
+  <%- include('./partials/_header.ejs') %>
+
+  <div id="new-map-form">
+
+    <form class="new-map" action="/api/map/new" method="POST">
+      New Map Data<br>
+
+      <label for="map_title">map_title</label>
+      <input type="text" name="title"><br>
+
+      <label for="map_description">map_description</label>
+      <input type="text" name="map_description"><br>
+
+      <label for="map_city">map_city</label>
+      <input id="city-autocomplete" name="city" placeholder="Enter a city" type="text" /><br>
+
+      <label for="map_category">category</label>
+      <input type="text" name="category"><br>
+
+      <label for="send map to database">send map to database</label>
+      <input type="submit" class="test_button"><br>
+    </form>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="/scripts/createNewMap.js"></script>
+</body>
+
+</html>
