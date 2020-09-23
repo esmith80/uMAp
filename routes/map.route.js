@@ -26,6 +26,11 @@ module.exports = (db) => {
       );
   });
 
+  router.get('/fav', (req, res) => {
+    const user = req.session.user;
+    res.render('favmaps', { user });
+  });
+
   router.get('/:id', (req, res) => {
     getMapByID(req.params.id, db)
       .then((map) => res.status(200).json(map))
@@ -35,12 +40,12 @@ module.exports = (db) => {
   });
 
   router.post('/new', (req, res) => {
-    // const user = req.session.user;
-    // if (!user) {
-    //   return res.status(400).json({ msg: 'User should be logged in!' });
-    // }
-    // const { userId } = req.session.user;
-    const queryParams = [req.body, 1];
+    const user = req.session.user;
+    if (!user) {
+      return res.status(400).json({ msg: 'User should be logged in!' });
+    }
+    const { userId } = req.session.user;
+    const queryParams = [req.body, userId];
 
     createNewMap(queryParams, db)
       .then((newMap) => res.status(200).json(newMap))

@@ -17,36 +17,34 @@
   <main class="container">
     <div class="map-options">
       <div class="my-maps"><a href="/api/map">My maps</a></div>
-      <div class="favorite-maps"><a href="/api/map/fav">Favorite maps</a></div>
+      <div class="favorite-maps"><a href="/api/favmaps">Favorite maps</a></div>
     </div>
     <div class="cards-list">
-      <% for(const map of userMaps) {%>
-      <a href="/api/map/<%= map.id %>">
-        <div class="card">
-          <div class="card-image">
-          </div>
 
-          <div class="card-text">
-            <h3><%= map.title %></h3>
-            <p><%= map.map_description %></p>
+      <div class="card">
+        <div class="card-image">
+          <!-- <span class="card-like-icon" data-favorite=false data-mapID=<%- map.id %>><i class="far fa-heart"></i></span> -->
+        </div>
+
+        <div class="card-text">
+          <h3><%= map.title %></h3>
+          <p><%= map.map_description %></p>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">10</div>
+            <div class="type">pins</div>
           </div>
-          <div class="card-stats">
-            <div class="stat">
-              <div class="value">10</div>
-              <div class="type">pins</div>
-            </div>
-            <div class="stat border">
-              <div class="value">323</div>
-              <div class="type">views</div>
-            </div>
-            <div class="stat fav" data-mapid=<%= map.id %>>
-              <div class="value"><i class="fas fa-star"></i></div>
-              <div class="type">add to favorive</div>
-            </div>
+          <div class="stat border">
+            <div class="value">323</div>
+            <div class="type">views</div>
+          </div>
+          <div class="stat">
+            <div class="value"><i class="fas fa-star"></i></div>
+            <div class="type">delete from favorite</div>
           </div>
         </div>
-      </a>
-      <% }%>
+      </div>
     </div>
 
   </main>
