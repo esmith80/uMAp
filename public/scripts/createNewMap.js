@@ -108,43 +108,43 @@ $('.marker-list').on('click', (event) => {
   document.getElementById('testid').readOnly = false;
 });
 
-$('#point-form').submit(function (event) {
-  event.preventDefault();
-  $('#point-form').hide();
-  let lat = $('#point-latitude').val();
-  let lng = $('#point-longitude').val();
-  let pointTitle = $('#point-title').val();
-  let pointDescription = $('#point-description').val();
-  let pointImgUrl = $('#point-image-url').val();
-  lat = parseFloat(lat);
-  lng = parseFloat(lng);
+// $('#point-form').submit(function (event) {
+//   event.preventDefault();
+//   $('#point-form').hide();
+//   // let lat = $('#point-latitude').val();
+//   // let lng = $('#point-longitude').val();
+//   // let pointTitle = $('#point-title').val();
+//   // let pointDescription = $('#point-description').val();
+//   // let pointImgUrl = $('#point-image-url').val();
+//   // lat = parseFloat(lat);
+//   // lng = parseFloat(lng);
+//   const serializedData = $(this).serialize();
+//   console.log(serializedData);
+//   document.getElementById('point-form').reset();
 
-  const serializedData = $(this).serialize();
-  document.getElementById('point-form').reset();
+//   let markerList = `
 
-  let markerList = `
+//   <div class = "marker-list" >
+//     <form class = "marker-list-item">
+//        <input type="text" value="${pointTitle}" readonly id="testid">
+//     </form>
+//        <div class = "marker-item-bottom">
+//          <div class = "marker-description">
+//            <p>${pointDescription}</p>
+//          </div>
+//          <div class = "marker-image-url">
+//            <img src="${pointImgUrl}" width="100" height="100">
+//          </div>
+//          <br>
+//          lat = ${lat} and lng = ${lng}
 
-  <div class = "marker-list" >
-    <form class = "marker-list-item">
-       <input type="text" value="${pointTitle}" readonly id="testid">
-    </form>
-       <div class = "marker-item-bottom">
-         <div class = "marker-description">
-           <p>${pointDescription}</p>
-         </div>
-         <div class = "marker-image-url">
-           <img src="${pointImgUrl}" width="100" height="100">
-         </div>
-         <br>
-         lat = ${lat} and lng = ${lng}
+//   </div>
 
-  </div>
+//   `;
+//   $('#saved-points').append(markerList);
 
-  `;
-  $('#saved-points').append(markerList);
-
-  // Submit map to db
-});
+// });
+// Submit map to db
 $('.new-map').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
