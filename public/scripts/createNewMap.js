@@ -1,3 +1,7 @@
+// Having an issue where the auto-complete City field and the map do not
+// load together. Issue may be with order of scripts and could be fixed
+// with  jQuery $( document ).ready
+
 // this function creates a new marker (point) (do we need to return it?)
 let markers = [];
 const addNewPoint = (lat, lng) => {
@@ -162,7 +166,32 @@ $('#point-form').submit(function (event) {
   // $.post(`/api/pin/${mapId}`, serializedData);
 });
 
+
+// event listener for user clicking Edit Point
+$('.edit-point-control').on('click', function (event) {
+
+  //if this form is already showing for another point
+  //keep showing it but update the data for the current point
+  //or slide it up and down again with new data
+  $('#edit-point-form').css('display', 'block');
+  // populate form with info from that point
+  $('#edit-point-title').val()
+});
+
+// event listener for user clicking Submit Edit Point
+$('#edit-point-submit').on('submit', () => {
+  $('#edit-point-form').css('display', 'none');
+  document.getElementById("#edit-point-form").reset();
+});
+
+
+
+
 // need an autocomplete field that filters for cities
-// let autocomplete = new google.maps.places.Autocomplete(
-//   document.getElementById('city-autocomplete')
-// )
+// this feature is not working right now due to async/timing of loading scripts
+let autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById('city-autocomplete')
+ )
+
+
+

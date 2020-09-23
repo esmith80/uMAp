@@ -7,11 +7,11 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
   <!-- javascript -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly"
-    defer></script>
-  <!-- <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script> -->
+  <!-- <script -->
+    <!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=places" -->
+    <!-- async ></script> -->
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places" async></script>
 
   <!-- stylesheets -->
   <link rel="stylesheet" href="/styles/layout.css" />
@@ -31,7 +31,7 @@
       <label for="point-title">point-title</label>
       <input type="text" name="title" id="point-title"><br>
 
-      <label for="point-description">map_description</label>
+      <label for="point-description">point_description</label>
       <input type="text" name="description" id="point-description"><br>
 
       <label for="point-image-url">point-image-url</label>
@@ -47,8 +47,67 @@
     </form>
   </div>
 
-  <div id="saved-points"></div>
+  <br>
+  <br>
 
+  <!-- many edit-point-controls so it needs to be a class that appears on each point listing-->
+
+  <div id="edit-point-form">
+    <!-- not sure how to supply pinId -->
+    <form method="POST" action="/api/pin/<%= map.id %>" id="point-edit-form" data-mapId=<%= map.id %>>
+
+      <label for="point-title">point-title</label>
+      <input type="text" name="title" id="edit-point-title"><br>
+
+      <label for="point-description">point_description</label>
+      <input type="text" name="description" id="edit-point-description"><br>
+
+      <label for="point-image-url">point-image-url</label>
+      <input type="text" name="image_url" id="edit-point-image-url"><br>
+
+      <!-- don't need these form input fields unless we want to allow user to pick new coords -->
+      <label for="point-latitude">point-latitude</label>
+      <input type="text" name="latitude" id="edit-point-latitude"><br>
+
+      <label for="point-longitude">point-longitude</label>
+      <input type="text" name="longitude" id="edit-point-longitude"><br>
+
+      <input type="submit" id="edit-point-submit" value="SUBMIT EDITS"><br>
+    </form>
+  </div>
+
+  <br>
+
+  <div id="saved-points">EXAMPLE SAVED POINTS<br>
+
+   <div id="example1-saved-point" style="border: solid; width: 300px; margin: 10px">
+     <div id="example11-saved-point-title">Example Title 1</div>
+     <div id="example1-saved-point-description">Example Description 1</div>
+     <div id="example1-saved-point-image_url">Example Image URL 1</div>
+     <div id="example1-saved-point-latitude">1</div>
+     <div id="example1-saved-point-longitude">1</div>
+     <button class="edit-point-control">EDIT THIS POINT</button>
+   </div>
+
+   <div id="example2-saved-point" style="border: solid; width: 300px; margin: 10px">
+    <div id="example2-saved-point-title">Example Title 2</div>
+    <div id="example2-saved-point-description">Example Description 2</div>
+    <div id="example2-saved-point-image_url">Example Image URL 2</div>
+    <div id="example2-saved-point-latitude">2</div>
+    <div id="example2-saved-point-longitude">2</div>
+    <button class="edit-point-control">EDIT THIS POINT</button>
+  </div>
+
+  <div id="example3-saved-point" style="border: solid; width: 300px; margin: 10px">
+    <div id="example3-saved-point-title">Example Title 3</div>
+    <div id="example3-saved-point-description">Example Description 3</div>
+    <div id="example3-saved-point-image_url">Example Image URL 3</div>
+    <div id="example3-saved-point-latitude">3</div>
+    <div id="example3-saved-point-longitude">3</div>
+    <button class="edit-point-control">EDIT THIS POINT</button>
+  </div>
+
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
