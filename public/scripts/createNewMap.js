@@ -108,8 +108,6 @@ $('.marker-list').on('click', (event) => {
   document.getElementById('testid').readOnly = false;
 });
 
-// Submit map to db
-// });
 $('.new-map').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
