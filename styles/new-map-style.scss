@@ -1,0 +1,38 @@
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#new-map-form {
+  height: 30%;
+}
+
+#map {
+  height: 60%;
+  width: 40%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// #point-form {
+//   display: none;
+// }
+
+.point-attribute {
+  border: none;
+  padding: 10px;
+  background-color: bisque;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+}
+
+#edit-control {
+  padding: 10px;
+  background-color: cornflowerblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
+  color: hotpink;
+}

@@ -12,8 +12,9 @@ INSERT INTO
   (title, user_id, map_description)
 VALUES
   ('Edmonton', 1, 'Edmonton map description'),
-  ('Calgary', 2, 'Calgary map description'),
-  ('Vancouver', 3, 'Vancouver map description');
+  ('Calgary', 1, 'Calgary map description'),
+  ('Vancouver', 1, 'Vancouver map description'),
+  ('Halifax', 1, 'Vancouver map description');
 
 INSERT INTO
   map_reviews
