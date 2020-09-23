@@ -24,7 +24,7 @@ module.exports = {
     ($1, $2, $3, $4, $5)
     RETURNING *;`;
 
-    return db
+    return db // added user_id to next line
       .query(searchQuery, [title, map_description, userId, city, category])
       .then(({ rows: newMap }) => newMap[0]);
   },

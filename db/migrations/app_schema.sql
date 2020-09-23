@@ -27,8 +27,9 @@ CREATE TABLE maps
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   city VARCHAR(255),
   category VARCHAR(255),
-  map_centre_latitude DECIMAL,
-  map_centre_longitude DECIMAL
+  -- NEXT 2 LINES are lat and long may need for map centre
+  --map_centre_latitude DECIMAL,
+  --map_centre_longitude DECIMAL
 );
 
 CREATE TABLE points
