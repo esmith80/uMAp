@@ -3,11 +3,8 @@
 @import './footer.scss';
 @import './main-content.layout.scss';
 @import './vars';
-<<<<<<< HEAD
-@import './single-map.scss';
-=======
-@import './new-map-style.scss';
->>>>>>> 395de4c5cc096e73e446b1fab2865581638eea16
+// @import './new-map-style.scss';
+@import'./create-new-map.scss';
 
 * {
   box-sizing: border-box;
