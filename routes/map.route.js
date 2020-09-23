@@ -15,36 +15,47 @@ module.exports = (db) => {
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
     }
-
-    getMapsByUserId(user.userId, db).then((userMaps) => {
-      res
-        .status(200)
-        .json({ userMaps })
-        .catch((err) =>
-          res.status(500).json({ msg: 'failed to load maps table' })
-        );
-    });
-  });
-
-  router.get('/:id', (req, res) => {
-    getMapByID(req.params.id, db)
-      .then((map) => res.status(200).json(map))
+    getMapsByUserId(user.userId, db)
+      .then((userMaps) => {
+        const vars = { user, userMaps };
+        res.render('index', vars);
+      })
       .catch((err) =>
-        res.status(500).json({ msg: 'failed to get single map table' })
+        res.status(500).json({ msg: 'failed to load maps table' })
       );
   });
 
+  router.get('/fav', (req, res) => {
+    const user = req.session.user;
+    res.render('favmaps', { user });
+  });
+
+  router.get('/new', (req, res) => {
+    const user = req.session.user;
+    console.log;
+    res.render('createMap', { user });
+  });
+
   router.post('/new', (req, res) => {
-    // const user = req.session.user;
-    // if (!user) {
-    //   return res.status(400).json({ msg: 'User should be logged in!' });
-    // }
-    // const { userId } = req.session.user;
-    const queryParams = [req.body, 1];
+    const user = req.session.user;
+    const queryParams = { body: req.body, user: user.userId };
 
     createNewMap(queryParams, db)
-      .then((newMap) => res.status(200).json(newMap))
+      .then((newMap) => {
+        res.redirect(`/api/map/${newMap.id}`);
+      })
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
+  });
+
+  router.get('/:id', (req, res) => {
+    const user = req.session.user;
+    getMapByID(req.params.id, db)
+      .then((map) => {
+        res.render('map', { map, user });
+      })
+      .catch((err) =>
+        res.status(500).json({ msg: 'failed to get single map table' })
+      );
   });
 
   router.post('/edit/:id', (req, res) => {
