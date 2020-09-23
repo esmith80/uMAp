@@ -108,43 +108,8 @@ $('.marker-list').on('click', (event) => {
   document.getElementById('testid').readOnly = false;
 });
 
-$('#point-form').submit(function (event) {
-  event.preventDefault();
-  $('#point-form').hide();
-  let lat = $('#point-latitude').val();
-  let lng = $('#point-longitude').val();
-  let pointTitle = $('#point-title').val();
-  let pointDescription = $('#point-description').val();
-  let pointImgUrl = $('#point-image-url').val();
-  lat = parseFloat(lat);
-  lng = parseFloat(lng);
-
-  const serializedData = $(this).serialize();
-  document.getElementById('point-form').reset();
-
-  let markerList = `
-
-  <div class = "marker-list" >
-    <form class = "marker-list-item">
-       <input type="text" value="${pointTitle}" readonly id="testid">
-    </form>
-       <div class = "marker-item-bottom">
-         <div class = "marker-description">
-           <p>${pointDescription}</p>
-         </div>
-         <div class = "marker-image-url">
-           <img src="${pointImgUrl}" width="100" height="100">
-         </div>
-         <br>
-         lat = ${lat} and lng = ${lng}
-
-  </div>
-
-  `;
-  $('#saved-points').append(markerList);
-
-  // Submit map to db
-});
+// Submit map to db
+// });
 $('.new-map').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
@@ -156,11 +121,33 @@ $('.new-map').submit(function (event) {
 $('#point-form').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
-  console.log('this', this);
-  // const mapId = $('#point-form').data('mapid');
-  console.log(serializedData);
-  // console.log(mapId);
-  // $.post(`/api/pin/${mapId}`, serializedData);
+  const mapId = $('#point-form').data('mapid');
+
+  $.post(`/api/pin/${mapId}`, serializedData);
+});
+
+// add  to favorite map
+$('.fav').click(() => {
+  const mapId = $('#point-form').data('mapid');
+  $.post('/api/map/fav', { mapId });
+});
+
+$('.remove-fav').click(() => {
+  const mapId = $('#point-form').data('mapid');
+  $.post('/api/map/fav/delete', { mapId });
+});
+
+$('.toggle-fav').click(function () {
+  const mapId = $('#point-form').data('mapid');
+  $(this).children().toggleClass('far fa-star  fas fa-star added');
+
+  const added = $(this).children().hasClass('added');
+
+  if (added) {
+    $.post('/api/map/fav', { mapId });
+  } else {
+    $.post('/api/map/fav/delete', { mapId });
+  }
 });
 
 // need an autocomplete field that filters for cities

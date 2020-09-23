@@ -22,7 +22,13 @@
 
   <div id="map"></div>
 
-  <button id="add-point-button">Add Point</button>
+  <div>
+    <div class="toggle-fav"><i class="far fa-star"></i></div>
+    <div class="type">add to favorive</div>
+  </div>
+
+  <hr>
+
   <div id="new-point-form">
 
     <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
@@ -49,9 +55,17 @@
 
   <div id="saved-points"></div>
 
+  <% for(const pin of pins) {%>
+
+  <div data-pin-id=<%= pin.id %>> title - <%= pin.title %></div>
+  <div> desc - <%= pin.description %></div>
+  <% } %>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+
   <script src="/scripts/createNewMap.js"></script>
 </body>
 
