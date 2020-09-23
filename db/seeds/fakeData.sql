@@ -1,5 +1,5 @@
 --fake data
-INSERT INTO 
+INSERT INTO
   users
   (name, email, password)
 VALUES
@@ -11,9 +11,10 @@ INSERT INTO
   maps
   (title, user_id, map_description)
 VALUES
-  ('new map1', 1, 'description1'),
-  ('new map2', 2, 'description2'),
-  ('new map3', 3, 'description2');
+  ('Edmonton', 1, 'Edmonton map description'),
+  ('Calgary', 1, 'Calgary map description'),
+  ('Vancouver', 1, 'Vancouver map description'),
+  ('Halifax', 1, 'Vancouver map description');
 
 INSERT INTO
   map_reviews

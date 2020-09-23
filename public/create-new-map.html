@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Map</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+  <!-- javascript -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly"
+    defer></script>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="./styles/create-new-map-style.css" />
+  <script src="./scripts/addNewMap.js"></script>
+</head>
+
+<body>
+  <div id="new-map-form">
+    Enter data to create a new map in the database (test only for now - we will eventually pull this data directly from
+    the DOM using jQuery):
+    <form action="/api/map/new" method="POST">
+
+      <label for="title">title</label>
+      <input type="text" name="title" id="title"><br>
+
+      <label for="map_description">map_description</label>
+      <input type="text" name="map_description" id="map_description"><br>
+
+      <label for="city">city</label>
+      <input type="text" name="city" id="city"><br>
+
+      <label for="category">category</label>
+      <input type="text" name="category" id="category"><br>
+
+      <label for="map_centre_latitude">map_centre_latitude</label>
+      <input type="text" name="map_centre_latitude" id="map_centre_latitude"><br>
+
+      <label for="map_centre_longitude">map_centre_longitude</label>
+      <input type="text" name="map_centre_longitude" id="map_centre_longitude"><br>
+
+      <label for="send to database"></label>
+      <input class="new-map-btn" type="submit">
+    </form>
+
+
+  </div>
+  <div id="map"></div>
+  <script src="./scripts/addNewMap.js"></script>
+</body>
+
+</html>

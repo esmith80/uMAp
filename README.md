@@ -1,4 +1,7 @@
+## Ed Smith made this change on Sunday at 1:45PM. I added this line and also added one new comment in the users.js file
+
 LHL Node Skeleton
+
 =========
 
 ## Project Setup

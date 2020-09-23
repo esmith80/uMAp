@@ -1,0 +1,20 @@
+<header>
+  <div class="nav-main">
+    <nav>
+      <h1 class="logo">UMap</h1>
+      <ul>
+        <li><a href="/api/map">Home</a></li>
+        <li><a href="#">Create New Map</a></li>
+        <li>
+
+          <% if(user.userId !== 'hello') {%>
+          <span class="mr-4">Welcome: <%= user.username %></span>
+          <button class="logout-btn">
+            <a href="/logout">Logout</a>
+          </button>
+          <% }%>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -3,7 +3,7 @@ const router = Router();
 const {
   getMapsByUserId,
   getMapByID,
-  creareNewMap,
+  createNewMap,
   updateMapByID,
   deleteMapByID,
 } = require('../db/queries/map.queries');
@@ -15,15 +15,20 @@ module.exports = (db) => {
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
     }
+    getMapsByUserId(user.userId, db)
+      .then((userMaps) => {
+        console.log('usr maps', userMaps);
+        const vars = { user, userMaps };
+        res.render('index', vars);
+      })
+      .catch((err) =>
+        res.status(500).json({ msg: 'failed to load maps table' })
+      );
+  });
 
-    getMapsByUserId(user.userId, db).then((userMaps) => {
-      res
-        .status(200)
-        .json({ userMaps })
-        .catch((err) =>
-          res.status(500).json({ msg: 'failed to load maps table' })
-        );
-    });
+  router.get('/fav', (req, res) => {
+    const user = req.session.user;
+    res.render('favmaps', { user });
   });
 
   router.get('/:id', (req, res) => {
@@ -34,7 +39,7 @@ module.exports = (db) => {
       );
   });
 
-  router.post('/', (req, res) => {
+  router.post('/new', (req, res) => {
     const user = req.session.user;
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
@@ -42,7 +47,7 @@ module.exports = (db) => {
     const { userId } = req.session.user;
     const queryParams = [req.body, userId];
 
-    creareNewMap(queryParams, db)
+    createNewMap(queryParams, db)
       .then((newMap) => res.status(200).json(newMap))
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });

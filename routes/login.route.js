@@ -3,17 +3,22 @@ const router = Router();
 
 module.exports = (db) => {
   //  /api/login
-  router.post('/', (req, res) => {
-    const { email, password } = req.body;
+  router.get('/', (req, res) => {
+    const user = req.session.user;
+    console.log('login user', user);
+    res.render('login', { user });
+  });
 
-    if (!email || !password) {
+  router.post('/', (req, res) => {
+    const { email } = req.body;
+    if (!email) {
       return res.status(400).json({ error: 'Email and password required!' });
     }
 
     const searchQuery = `SELECT id, name, email 
-      FROM users WHERE email = $1 AND password = $2`;
+      FROM users WHERE email = $1;`;
 
-    db.query(searchQuery, [email, password])
+    db.query(searchQuery, [email])
       .then((user) => {
         const { id, name, email } = user.rows[0];
         req.session.user = {
@@ -21,7 +26,8 @@ module.exports = (db) => {
           username: name,
           useremail: email,
         };
-        res.status(200).json({ msg: 'Success' });
+
+        res.redirect('/api/map');
       })
       .catch((err) => res.status(400).json({ msg: err }));
   });
