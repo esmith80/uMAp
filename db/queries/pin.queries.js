@@ -7,7 +7,7 @@ module.exports = {
     return db.query(searchQuery, [mapId]).then(({ rows: pins }) => pins);
   },
 
-  createNewPin: (queryValues, mapId, db) => {
+  createNewPin: (queryValues, mapId, userId, db) => {
     const {
       title,
       description,
@@ -16,8 +16,6 @@ module.exports = {
       longitude,
       latitude,
     } = queryValues;
-    const { userId } = req.session.user;
-
     const createQuery = `
       INSERT INTO 
         points(title, description, image_url, created_by, map_id, website_url, longitude, latitude)

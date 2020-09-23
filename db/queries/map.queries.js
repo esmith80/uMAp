@@ -72,4 +72,22 @@ module.exports = {
 
     return db.query(searchQuery, [id]);
   },
+
+  addMapToFavorite: (mapId, userId, db) => {
+    const addQuery = `INSERT INTO favorites(map_id, user_id) VALUES($1, $2);`;
+
+    return db.query(addQuery, [mapId, userId]);
+  },
+
+  removeMapFromFavorite: (mapId, db) => {
+    const deleteQuery = `DELETE FROM favorites WHERE map_id = $1;`;
+
+    return db.query(deleteQuery, [mapId]);
+  },
+
+  getFavoriteMaps: (userId, db) => {
+    const searchQuery = `SELECT * from maps JOIN favorites ON maps.id = map_id WHERE favorites.user_id = $1;`;
+
+    return db.query(searchQuery, [userId]).then(({ rows: favMaps }) => favMaps);
+  },
 };

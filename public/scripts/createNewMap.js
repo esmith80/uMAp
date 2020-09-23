@@ -112,42 +112,6 @@ $('.marker-list').on('click', (event) => {
   document.getElementById('testid').readOnly = false;
 });
 
-$('#point-form').submit(function (event) {
-  event.preventDefault();
-  $('#point-form').hide();
-  let lat = $('#point-latitude').val();
-  let lng = $('#point-longitude').val();
-  let pointTitle = $('#point-title').val();
-  let pointDescription = $('#point-description').val();
-  let pointImgUrl = $('#point-image-url').val();
-  lat = parseFloat(lat);
-  lng = parseFloat(lng);
-
-  const serializedData = $(this).serialize();
-  document.getElementById('point-form').reset();
-
-  let markerList = `
-  <br>
-  <div class = "marker-list" >
-    <form class = "marker-list-item">
-      <div class="marker-title">
-       <input type="text" value="${pointTitle}" readonly class="point-attribute">
-      </div>
-      <div class = "marker-description">
-        <input type="text" value="${pointDescription}" readonly class="point-attribute">
-      </div>
-      <div class = "marker-image-url">
-        <input type="text" value="${pointImgUrl}" readonly class="point-attribute">
-      </div>
-    </form>
-  </div>
-  <br>
-
-  `;
-  $('#saved-points').append(markerList);
-
-  // Submit map to db
-});
 $('.new-map').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
@@ -159,11 +123,33 @@ $('.new-map').submit(function (event) {
 $('#point-form').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
-  console.log('this', this);
-  // const mapId = $('#point-form').data('mapid');
-  console.log(serializedData);
-  // console.log(mapId);
-  // $.post(`/api/pin/${mapId}`, serializedData);
+  const mapId = $('#point-form').data('mapid');
+
+  $.post(`/api/pin/${mapId}`, serializedData);
+});
+
+// add  to favorite map
+$('.fav').click(() => {
+  const mapId = $('#point-form').data('mapid');
+  $.post('/api/map/fav', { mapId });
+});
+
+$('.remove-fav').click(() => {
+  const mapId = $('#point-form').data('mapid');
+  $.post('/api/map/fav/delete', { mapId });
+});
+
+$('.toggle-fav').click(function () {
+  const mapId = $('#point-form').data('mapid');
+  $(this).children().toggleClass('far fa-star  fas fa-star added');
+
+  const added = $(this).children().hasClass('added');
+
+  if (added) {
+    $.post('/api/map/fav', { mapId });
+  } else {
+    $.post('/api/map/fav/delete', { mapId });
+  }
 });
 
 
@@ -183,7 +169,6 @@ $('#edit-point-submit').on('submit', () => {
   $('#edit-point-form').css('display', 'none');
   document.getElementById("#edit-point-form").reset();
 });
-
 
 
 

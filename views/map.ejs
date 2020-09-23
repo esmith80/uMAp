@@ -22,7 +22,13 @@
 
   <div id="map"></div>
 
-  <button id="add-point-button">Add Point</button>
+  <div>
+    <div class="toggle-fav"><i class="far fa-star"></i></div>
+    <div class="type">add to favorive</div>
+  </div>
+
+  <hr>
+
   <div id="new-point-form">
 
     <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
@@ -80,37 +86,20 @@
 
   <div id="saved-points">EXAMPLE SAVED POINTS<br>
 
-   <div id="example1-saved-point" style="border: solid; width: 300px; margin: 10px">
-     <div id="example11-saved-point-title">Example Title 1</div>
-     <div id="example1-saved-point-description">Example Description 1</div>
-     <div id="example1-saved-point-image_url">Example Image URL 1</div>
-     <div id="example1-saved-point-latitude">1</div>
-     <div id="example1-saved-point-longitude">1</div>
-     <button class="edit-point-control">EDIT THIS POINT</button>
-   </div>
+  <% for(const pin of pins) {%>
 
-   <div id="example2-saved-point" style="border: solid; width: 300px; margin: 10px">
-    <div id="example2-saved-point-title">Example Title 2</div>
-    <div id="example2-saved-point-description">Example Description 2</div>
-    <div id="example2-saved-point-image_url">Example Image URL 2</div>
-    <div id="example2-saved-point-latitude">2</div>
-    <div id="example2-saved-point-longitude">2</div>
-    <button class="edit-point-control">EDIT THIS POINT</button>
-  </div>
+  <div data-pin-id=<%= pin.id %>> title - <%= pin.title %></div>
+  <div> desc - <%= pin.description %></div>
+  <% } %>
 
-  <div id="example3-saved-point" style="border: solid; width: 300px; margin: 10px">
-    <div id="example3-saved-point-title">Example Title 3</div>
-    <div id="example3-saved-point-description">Example Description 3</div>
-    <div id="example3-saved-point-image_url">Example Image URL 3</div>
-    <div id="example3-saved-point-latitude">3</div>
-    <div id="example3-saved-point-longitude">3</div>
-    <button class="edit-point-control">EDIT THIS POINT</button>
-  </div>
 
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+
   <script src="/scripts/createNewMap.js"></script>
 </body>
 
