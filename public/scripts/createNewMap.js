@@ -91,6 +91,8 @@ function initMap() {
       });
     });
   }
+// END OF INITMAP FUNCTION
+
 
   // $.ajax({
   //   type: "POST",
@@ -110,13 +112,7 @@ function initMap() {
 
 // });
 
-$('.marker-list').on('click', (event) => {
-
-  console.log('marker-list clicked');
-  document.getElementById("testid").readOnly = false;
-
-});
-
+// event listener for submitting Add Point form
 $("#point-form").submit( function (event) {
   event.preventDefault();
   $('#point-form').hide();
@@ -132,33 +128,51 @@ $("#point-form").submit( function (event) {
   document.getElementById("point-form").reset();
 
   let markerList = `
-
+  <br>
   <div class = "marker-list" >
     <form class = "marker-list-item">
-       <input type="text" value="${pointTitle}" readonly id="testid">
+      <div class="marker-title">
+       <input type="text" value="${pointTitle}" readonly class="point-attribute">
+      </div>
+      <div class = "marker-description">
+        <input type="text" value="${pointDescription}" readonly class="point-attribute">
+      </div>
+      <div class = "marker-image-url">
+        <input type="text" value="${pointImgUrl}" readonly class="point-attribute">
+      </div>
     </form>
-       <div class = "marker-item-bottom">
-         <div class = "marker-description">
-           <p>${pointDescription}</p>
-         </div>
-         <div class = "marker-image-url">
-           <img src="${pointImgUrl}" width="100" height="100">
-         </div>
-         <br>
-         lat = ${lat} and lng = ${lng}
-
   </div>
+  <br>
 
   `
   $('#saved-points').append(markerList);
 
-  console.log('serializedData: ', serializedData);
   // $.post("/api/map/new", serializedData);
 });
 
-
+// event listener for editing a saved point needs to use jQuery function that accounts for dynamically created elements (that's why there's the second argument - a pre existing element ')
+$('#saved-points').on('click', '#edit-control', function() {
+  console.log('edit-control-clicked');
+  $('.point-attribute').attr('readonly', false);
+});
+$()
 // need an autocomplete field that filters for cities
 let autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("city-autocomplete"));
+
+    $( document ).ready(function() {
+      // Handler for .ready() called.
+      let autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("city-autocomplete"),
+        {
+          types: ["(cities)"],
+          componentRestrictions: 'ca'
+        }
+      );
+      places = new google.maps.places.PlacesService(map);
+
+
+    });
+
 
 
