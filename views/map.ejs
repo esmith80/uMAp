@@ -11,7 +11,8 @@
     <!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=places" -->
     <!-- async ></script> -->
   <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places" async></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=places"
+    defer></script>
 
   <!-- stylesheets -->
   <link rel="stylesheet" href="/styles/layout.css" />
@@ -44,10 +45,10 @@
       <input type="text" name="image_url" id="point-image-url"><br>
 
       <label for="point-latitude">point-latitude</label>
-      <input type="text" name="latitude" id="point-latitude"><br>
+      <input type="hidden" name="latitude" id="point-latitude"><br>
 
       <label for="point-longitude">point-longitude</label>
-      <input type="text" name="longitude" id="point-longitude"><br>
+      <input type="hidden" name="longitude" id="point-longitude"><br>
 
       <input type="submit" id="point-submit-button" value="Save Point"><br>
     </form>
@@ -57,10 +58,11 @@
   <br>
 
   <!-- many edit-point-controls so it needs to be a class that appears on each point listing-->
+  <!-- this form needs to Edit existing Point (pin) record in db -->
 
-  <div id="edit-point-form">
-    <!-- not sure how to supply pinId -->
-    <form method="POST" action="/api/pin/<%= map.id %>" id="point-edit-form" data-mapId=<%= map.id %>>
+  <div id="edit-point-form" style="display: none">EDIT POINT FORM
+    <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
+    <form id="edit-form">
 
       <label for="point-title">point-title</label>
       <input type="text" name="title" id="edit-point-title"><br>
@@ -71,12 +73,12 @@
       <label for="point-image-url">point-image-url</label>
       <input type="text" name="image_url" id="edit-point-image-url"><br>
 
-      <!-- don't need these form input fields unless we want to allow user to pick new coords -->
-      <label for="point-latitude">point-latitude</label>
-      <input type="text" name="latitude" id="edit-point-latitude"><br>
+      <!-- hidden attributes -->
+      <input type="hidden" name="latitude" id="edit-point-latitude">
+      <input type="hidden" name="longitude" id="edit-point-longitude">
+      <input type="hidden" name="id" id="edit-point-id">
 
-      <label for="point-longitude">point-longitude</label>
-      <input type="text" name="longitude" id="edit-point-longitude"><br>
+      <br>
 
       <input type="submit" id="edit-point-submit" value="SUBMIT EDITS"><br>
     </form>
@@ -86,14 +88,33 @@
 
   <div id="saved-points">EXAMPLE SAVED POINTS<br>
 
-  <% for(const pin of pins) {%>
 
-  <div data-pin-id=<%= pin.id %>> title - <%= pin.title %></div>
-  <div> desc - <%= pin.description %></div>
-  <% } %>
+  </div>
+
+
+
+    <div class="marker-list">
+      <ul>
+        <% for(const marker of pins) {%>
+        <li ><%= marker.title%></li>
+        <li ><%= marker.description%></li>
+        <li ><%= marker.image_url%></li>
+
+
+        <!-- <button class="edit-point-control" data-pindata=<%= [marker.id, marker.title, marker.description, marker.image_url, marker.latitude, marker.longitude ] %>>Edit this Point</button> -->
+        <button class="edit-point-control" data-pindata=<%=[marker.id, marker.description, marker.image_url, marker.latitude, marker.longitude] %>>Edit this Point</button>
+        <br>
+        <br>
+        <% } %>
+      </ul>
+    </div>
+
+
+
 
 
   </div>
+
 
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

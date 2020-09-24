@@ -109,7 +109,7 @@ function initMap() {
 
 $('.marker-list').on('click', (event) => {
   console.log('marker-list clicked');
-  document.getElementById('testid').readOnly = false;
+  //document.getElementById('testid').readOnly = false;
 });
 
 $('.new-map').submit(function (event) {
@@ -154,29 +154,50 @@ $('.toggle-fav').click(function () {
 
 
 // event listener for user clicking Edit Point
+let editFormVisible = false;
+
 $('.edit-point-control').on('click', function (event) {
+  //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+  if (!editFormVisible) {
+    $('#edit-point-form').slideDown('slow');
+   editFormVisible = true;
+  }
+  // identify the point/pin that was clicked and put all data in pinid button
+  let pinData = $(this).data('pindata').split(",");
+  console.log('here is the pinData: ', pinData);
+  const [id, title, description, imageUrl, latitude, longitude] = pinData;
 
-  //if this form is already showing for another point
-  //keep showing it but update the data for the current point
-  //or slide it up and down again with new data
-  $('#edit-point-form').css('display', 'block');
-  // populate form with info from that point
-  $('#edit-point-title').val()
+  //populate form with values from selected point to edit
+  $('#edit-point-id').val(id);
+  $('#edit-point-title').val(title);
+  $('#edit-point-description').val(description);
+  $('#edit-point-image-url').val(imageUrl);
+  $('#edit-point-latitude').val(latitude);
+  $('#edit-point-longitude').val(longitude);
 });
 
-// event listener for user clicking Submit Edit Point
-$('#edit-point-submit').on('submit', () => {
-  $('#edit-point-form').css('display', 'none');
-  document.getElementById("#edit-point-form").reset();
-});
+// event listener for Submit Edit Point
+$('#edit-form').submit(function (event) {
+  event.preventDefault();
+  $('#edit-form').slideUp('slow');
+  const serializedData = $(this).serialize();
+  console.log(serializedData);
+  // how are we getting map id and pin id
 
+  const pinId = $('#edit-point-id').val();
+  console.log('pinId ', pinId);
+  const mapId = 18;
+  // needs to go to route for pinId, not mapId
+  // document.getElementById("#edit-form").reset();
+  $.post(`/api/pin/${mapId}/${pinId}`, serializedData);
+});
 
 
 // need an autocomplete field that filters for cities
 // this feature is not working right now due to async/timing of loading scripts
-let autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('city-autocomplete')
- )
+//let autocomplete = new google.maps.places.Autocomplete(
+//    document.getElementById('city-autocomplete')
+// )
 
 
 
