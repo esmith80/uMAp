@@ -64,6 +64,20 @@ $(document).ready(() => {
 // create map
 $('.new-map').submit(function (event) {
   event.preventDefault();
+  $('.title-error').remove();
+  $('.description-error').remove();
+  $('.city-error').remove();
+  const titleText = $('#new-title-text').val();
+  const descriptionText = $('#new-description-text').val();
+  const cityText = $('#new-city-text').val();
+  const categoryText = $('new-category-text').val();
+  if (titleText === '') {
+    return $('#new-title-container').append($('<p>').addClass('title-error').text("Title can't be blank"))
+  } else if (descriptionText === '') {
+    return $('#new-description-container').append($('<p>').addClass('description-error').text("Description is missing"))
+  } else if (cityText === '') {
+    return $('#new-city-container').append($('<p>').addClass('city-error').text("City is can't be blank"))
+  }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData);
   window.location.href('/api/map');
@@ -106,3 +120,4 @@ $('.delete-marker').click(() => {
 // let autocomplete = new google.maps.places.Autocomplete(
 //   document.getElementById('city-autocomplete')
 // )
+
