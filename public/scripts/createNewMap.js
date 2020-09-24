@@ -61,6 +61,7 @@ $(document).ready(() => {
     }
   });
 });
+
 // create map
 $('.new-map').submit(function (event) {
   event.preventDefault();
@@ -136,9 +137,10 @@ $('.add-marker').click(function () {
 // const markerid = [];
 $('.delete-marker').click(function () {
 console.log($(this))
-let data = $(this).attr('data-markerid')
-console.log(data);
- $('.delete-marker')
+const pinId = $(this).attr('data-markerid')
+// console.log(data);
+//  $('.delete-marker')
+ $.post(`/api/${pinId}/delete`, { pinId })
 });
 // need an autocomplete field that filters for cities
 // let autocomplete = new google.maps.places.Autocomplete(
