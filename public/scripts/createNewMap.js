@@ -3,22 +3,17 @@
 // with  jQuery $( document ).ready
 
 // this function creates a new marker (point) (do we need to return it?)
-let markers = [];
-const addNewPoint = (lat, lng) => {
-  let marker = new google.maps.Marker({
-    position: {
-      lat: lat,
-      lng: lng,
-    },
-    map: map,
-    title: 'marker title',
-  });
-  markers.push(marker);
-};
 
 // while a user has not clicked 'save point' change the marker lat-lng to the most recently clicked area on the map
-
+let markers = [];
 let map;
+
+const addMarker = (props) => {
+  new google.maps.Marker({
+    position: props.coords,
+    map: map,
+  });
+};
 
 function initMap() {
   window.navigator.geolocation.getCurrentPosition(
@@ -34,49 +29,16 @@ function initMap() {
         zoom: 13,
       });
 
-      // event listener for user clicking Add Point
-      $('#add-point-button').on('click', (event) => {
-        console.log('add-point-button clicked');
-        $('#point-form').css('display', 'block');
-      });
-
-      // Sets the map on all markers in the array
-      function setMapOnAll(map) {
-        for (let i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
-
-      function showMarkers() {
-        setMapOnAll(map);
-      }
-
       // event listener for user clicking on map
-      map.addListener('click', function (mapsMouseEvent) {
-        let coords = mapsMouseEvent.latLng.toString().split(',');
-        let lat = coords[0].replace('(', '');
-        let lng = coords[1].replace(')', '');
-        lat = parseFloat(lat);
-        lng = parseFloat(lng);
-        setMapOnAll(null);
-        let point = addNewPoint(lat, lng);
+      map.addListener('click', function (event) {
+        addMarker({ coords: event.latLng });
 
-        // if the form latitude field is blank, we know this is the user's first time clicking on the map
-        //if ($("#point-latitude").attr("value")) { $("#gmimap0").closest('div').remove(); }
-        // let point = addNewPoint(lat, lng);
-        // if the form latittude field is NOT blank, we need to erase the first marker and place a new one
-        // } else {
-        // point.position.lat = lat;
-        // point.position.lng = lng;
-        // }
+        const { lat, lng } = event.latLng;
         $('#point-latitude').attr('value', lat);
         $('#point-longitude').attr('value', lng);
-
-        // if we begin workflow to add point from clicking on a map (instead "add point" button)
-        // we need to add a new section <div> to create-new-map.html with form to fill in point data
-        //$('#point_form')
       });
     },
+
     () => {
       // if getCurrentPosition is not successful (if user blocks location tracking)
       map = new google.maps.Map(document.getElementById('map'), {
@@ -110,38 +72,59 @@ function initMap() {
 $('.marker-list').on('click', (event) => {
   console.log('marker-list clicked');
   //document.getElementById('testid').readOnly = false;
+$(document).ready(() => {
+  // get all marker for single map
+  const mapId = $('#point-form').data('mapid');
+  $.get(`/api/pin/${mapId}`).then(({ pins }) => {
+    for (const marker of pins) {
+      const coords = {
+        lat: Number(marker.latitude),
+        lng: Number(marker.longitude),
+      };
+      addMarker({ coords });
+    }
+  });
 });
-
+// create map
 $('.new-map').submit(function (event) {
   event.preventDefault();
+  $('.title-error').remove();
+  $('.description-error').remove();
+  $('.city-error').remove();
+  const titleText = $('#new-title-text').val();
+  const descriptionText = $('#new-description-text').val();
+  const cityText = $('#new-city-text').val();
+  const categoryText = $('new-category-text').val();
+  if (titleText === '') {
+    return $('#new-title-container').append(
+      $('<p>').addClass('title-error').text("Title can't be blank")
+    );
+  } else if (descriptionText === '') {
+    return $('#new-description-container').append(
+      $('<p>').addClass('description-error').text('Description is missing')
+    );
+  } else if (cityText === '') {
+    return $('#new-city-container').append(
+      $('<p>').addClass('city-error').text("City is can't be blank")
+    );
+  }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData);
 });
 
 // Create new pin
-
 $('#point-form').submit(function (event) {
   event.preventDefault();
   const serializedData = $(this).serialize();
   const mapId = $('#point-form').data('mapid');
-
   $.post(`/api/pin/${mapId}`, serializedData);
+  $(this).children('input').val('');
 });
 
 // add  to favorite map
-$('.fav').click(() => {
-  const mapId = $('#point-form').data('mapid');
-  $.post('/api/map/fav', { mapId });
-});
-
-$('.remove-fav').click(() => {
-  const mapId = $('#point-form').data('mapid');
-  $.post('/api/map/fav/delete', { mapId });
-});
-
 $('.toggle-fav').click(function () {
   const mapId = $('#point-form').data('mapid');
-  $(this).children().toggleClass('far fa-star  fas fa-star added');
+  $(this).children().toggleClass('far fa-star fas fa-star added');
 
   const added = $(this).children().hasClass('added');
 
@@ -193,6 +176,16 @@ $('#edit-form').submit(function (event) {
 });
 
 
+// toggle create marker form
+$('.add-marker').click(function () {
+  $('.toggle-form').slideToggle(1000);
+});
+
+// delete marker
+const markerid = [];
+$('.delete-marker').click(() => {
+  console.log($('.delete-marker').data('markerid'));
+});
 // need an autocomplete field that filters for cities
 // this feature is not working right now due to async/timing of loading scripts
 //let autocomplete = new google.maps.places.Autocomplete(
