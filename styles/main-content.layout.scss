@@ -15,8 +15,8 @@
 .card {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 13em 13em 4.5em;
-  grid-template-areas: 'image''text''stats';
+  grid-template-rows: 13em 13em;
+  grid-template-areas: 'image''text';
   border-radius: 18px;
   background-color: #fff;
   box-shadow: 9px 9px 15px -2px rgba(0, 0, 0, 0.52);
@@ -50,34 +50,34 @@
 
 
 
-.card-stats {
-  grid-area: stats;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  background-color: $primary-color;
+// .card-stats {
+//   grid-area: stats;
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   grid-template-rows: 1fr;
+//   border-bottom-left-radius: 18px;
+//   border-bottom-right-radius: 18px;
+//   background-color: $primary-color;
 
-  .stat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    color: #fff;
-  }
+//   .stat {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     padding: 10px;
+//     color: #fff;
+//   }
 
-  .type {
-    font-size: 12px;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
+//   .type {
+//     font-size: 12px;
+//     font-weight: 300;
+//     text-transform: uppercase;
+//   }
 
-  .value {
-    font-size: 20px;
-  }
-}
+//   .value {
+//     font-size: 20px;
+//   }
+// }
 
 
 .card-like-icon {
@@ -97,7 +97,6 @@
   justify-content: center;
 
   .my-maps {
-    margin-right: 20px;
     padding: 5px;
     border-radius: 10px;
 
@@ -106,7 +105,10 @@
     }
   }
 
+
   .favorite-maps {
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 5px;
     border-radius: 10px;
 

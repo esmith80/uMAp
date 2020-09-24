@@ -20,10 +20,9 @@
       <div class="favorite-maps"><a href="/api/map/fav">Favorite maps</a></div>
       <div class="favorite-maps"><a href="/api/map/contributed">Contributed to</a></div>
     </div>
-
-    <h2>All Maps</h2>
+    <h2>My maps</h2>
     <div class="cards-list">
-      <% for(const map of allMaps) {%>
+      <% for(const map of userMaps) {%>
       <a href="/api/map/<%= map.id %>">
         <div class="card">
           <div class="card-image">
@@ -33,7 +32,6 @@
             <h3><%= map.title %></h3>
             <p><%= map.map_description %></p>
           </div>
-
         </div>
       </a>
       <% } %>

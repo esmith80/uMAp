@@ -90,4 +90,15 @@ module.exports = {
 
     return db.query(searchQuery, [userId]).then(({ rows: favMaps }) => favMaps);
   },
+
+  getAllMaps: (db) => {
+    const searchQuery = `SELECT * FROM maps;`;
+
+    return db.query(searchQuery).then(({ rows: allMaps }) => allMaps);
+  },
+  getContributedMapsByUserID: (userId, db) => {
+    const searchQuery = `SELECT maps.*  FROM maps JOIN points ON maps.id = map_id WHERE points.created_by = $1`;
+
+    return db.query(searchQuery, [userId]).then(({ rows: maps }) => maps);
+  },
 };

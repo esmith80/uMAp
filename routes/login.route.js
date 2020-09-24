@@ -27,7 +27,7 @@ module.exports = (db) => {
           useremail: email,
         };
 
-        res.redirect('/api/map');
+        res.redirect('/api/map/allmaps');
       })
       .catch((err) => res.status(400).json({ msg: err }));
   });

@@ -9,11 +9,30 @@ const {
   addMapToFavorite,
   removeMapFromFavorite,
   getFavoriteMaps,
+  getAllMaps,
+  getContributedMapsByUserID,
 } = require('../db/queries/map.queries');
 const { getAllPins } = require('../db/queries/pin.queries');
 
 module.exports = (db) => {
   //api/map
+  router.get('/allmaps', (req, res) => {
+    const user = req.session.user;
+
+    getAllMaps(db).then((allMaps) => {
+      const vars = { user, allMaps };
+      res.render('index', vars);
+    });
+  });
+
+  router.get('/contributed', (req, res) => {
+    const user = req.session.user;
+    getContributedMapsByUserID(user.userId, db).then((maps) => {
+      const vars = { user, maps };
+      res.render('contibutedMaps', vars);
+    });
+  });
+
   router.get('/', (req, res) => {
     const user = req.session.user;
     if (!user) {
@@ -22,7 +41,7 @@ module.exports = (db) => {
     getMapsByUserId(user.userId, db)
       .then((userMaps) => {
         const vars = { user, userMaps };
-        res.render('index', vars);
+        res.render('userMaps', vars);
       })
       .catch((err) =>
         res.status(500).json({ msg: 'failed to load maps table' })
