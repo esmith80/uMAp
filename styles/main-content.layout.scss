@@ -79,7 +79,10 @@
   }
 
   .fav {
+
+
     &:hover {
+      border-bottom-right-radius: 18px;
       background-color: #2d8655;
     }
   }
