@@ -58,8 +58,32 @@
 
   li {
     border: 1px solid black;
-    padding: 5px;
-    margin: 3px;
+    // padding: 5px;
+    // margin: 3px;
     border-radius: 10px;
+  }
+  .marker-title-container {
+    margin:5px 3px;
+    padding:5px;
+  }
+
+  .marker-description-container {
+    font-size: 12px;
+    margin:5px 3px;
+    padding:5px;
+  }
+
+  .marker-button-container {
+    margin:5px 3px;
+    padding:5px;
+  }
+
+  img {
+    width:100%;
+    height:150px;
+    border-radius: 10px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
   }
 }

@@ -98,11 +98,15 @@ $('#point-form').submit(function (event) {
   event.preventDefault();
   $('.pin-title-error').remove();
   $('.pin-desc-error').remove();
+  $('.pin-img-error').remove();
   $('.pin-lat-long-error').remove();
   const pinTitleText = $('#point-title').val();
   const pinDescText = $('#point-description').val();
+  const pinImgText = $('#point-image').val();
+  console.log(pinImgText)
   const pinLatText = $('#point-latitude').val();
   const pinLongText = $('#point-longitude').val();
+
 
   if (pinTitleText === '') {
     return $('#pin-title-container').append(
@@ -112,16 +116,24 @@ $('#point-form').submit(function (event) {
     return $('#pin-description-container').append(
       $('<p>').addClass('pin-desc-error').text("Description can't be blank")
     );
+  } else if (pinImgText === '') {
+    return $('#pin-image-container').append(
+      $('<p>')
+        .addClass('pin-img-error')
+        .text('Please add an image')
+    );
   } else if (pinLatText === '' || pinLongText === '') {
-    return $('#pin-description-container').append(
+    return $('#pin-image-container').append(
       $('<p>')
         .addClass('pin-lat-long-error')
         .text('Please select a point on map')
     );
   }
   const serializedData = $(this).serialize();
+  console.log(serializedData);
   const mapId = $('#point-form').data('mapid');
   $.post(`/api/pin/${mapId}`, serializedData);
+
   $(this).children('input').val('');
 });
 
@@ -144,6 +156,7 @@ let editFormVisible = false;
 
 $('.edit-point-control').on('click', function (event) {
   //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+  console.log('Edit button clicked');
   if (!editFormVisible) {
     $('#edit-point-form').slideDown('slow');
     editFormVisible = true;
@@ -159,10 +172,20 @@ $('.edit-point-control').on('click', function (event) {
   $('#edit-point-longitude').val(longitude);
 });
 
+
+// Cancel edit form
+
+$('#cancel-edit').click (function() {
+  editFormVisible = false;
+  $('#edit-point-form').slideUp('slow')
+})
+
 // event listener for Submit Edit Point
 $('#edit-form').submit(function (event) {
   event.preventDefault();
-  $('#edit-form').slideUp('slow');
+  editFormVisible = false;
+  $('#edit-point-form').slideUp('slow');
+
   const serializedData = $(this).serialize();
   // how are we getting map id and pin id
 
@@ -186,25 +209,5 @@ $('.toggle-form').hide();
 $('.add-marker').click(function () {
   $('.toggle-form').slideToggle(1000);
 });
-<<<<<<< HEAD
 
-// delete marker
-// const markerid = [];
-$('.delete-marker').click(function () {
-console.log($(this))
-const pinId = $(this).attr('data-markerid')
-// console.log(data);
-//  $('.delete-marker')
- $.post(`/api/${pinId}/delete`, { pinId })
-});
-// need an autocomplete field that filters for cities
-// let autocomplete = new google.maps.places.Autocomplete(
-//   document.getElementById('city-autocomplete')
-// )
 
-// $('button').click(function(){
-//   var data = $.parseJSON($(this).attr('data-button'));
-//   alert(data.option1)
-// });
-=======
->>>>>>> 25f235afbc16026a867e9e1e569182b3c14506d2
