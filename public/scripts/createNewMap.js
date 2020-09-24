@@ -76,16 +76,37 @@ $('.new-map').submit(function (event) {
   } else if (descriptionText === '') {
     return $('#new-description-container').append($('<p>').addClass('description-error').text("Description is missing"))
   } else if (cityText === '') {
-    return $('#new-city-container').append($('<p>').addClass('city-error').text("City is can't be blank"))
+    return $('#new-city-container').append($('<p>').addClass('city-error').text("City can't be blank"))
   }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData);
   window.location.href('/api/map');
 });
 
+// {/* <label for="point-latitude">point-latitude</label>
+// <input type="text" name="latitude" id="point-latitude" readonly><br>
+
+// <label for="point-longitude">point-longitude</label>
+// <input type="text" name="longitude" id="point-longitude" readonly><br> */}
+
 // Create new pin
 $('#point-form').submit(function (event) {
   event.preventDefault();
+  $('.pin-title-error').remove();
+  $('.pin-desc-error').remove();
+  $('.pin-lat-long-error').remove();
+  const pinTitleText = $('#point-title').val();
+  const pinDescText = $('#point-description').val();
+  const pinLatText = $("#point-latitude").val();
+  const pinLongText = $('#point-longitude').val();
+
+  if (pinTitleText === '') {
+    return $('#pin-title-container').append($('<p>').addClass('pin-title-error').text("Title can't be blank"))
+  } else if (pinDescText === '' ) {
+    return $('#pin-description-container').append($('<p>').addClass('pin-desc-error').text("Description can't be blank"))
+  } else if (pinLatText === '' || pinLongText === '' ) {
+    return $('#pin-description-container').append($('<p>').addClass('pin-lat-long-error').text("Please select a point on map"))
+  }
   const serializedData = $(this).serialize();
   const mapId = $('#point-form').data('mapid');
   $.post(`/api/pin/${mapId}`, serializedData);

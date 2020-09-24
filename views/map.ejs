@@ -15,40 +15,8 @@
 <body>
   <%- include('./partials/_header.ejs') %>
 
-  <div id = "map-title">
-   <h1><%= map.title %></h1>
-  </div>
+  <div id="map"></div>
 
-  <div class= "map-description">
-
-    <p>
-      <%= map.description %>
-    </p>
-
-  </div>
-
-<div class = "main-map-container">
-
-  <div id = "map-container">
-
-    <div id="map"></div>
-
-  </div>
-
-  <div>
-    <button id="add-point-button">Add Point</button>
-  </div>
-
-  <div id="new-point-form">
-
-    <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
-      New Point Data<br>
-
-      <label for="point-title">point-title</label>
-      <input type="text" name="title" id="point-title"><br>
-
-      <label for="point-description">map_description</label>
-      <input type="text" name="description" id="point-description"><br>
   <!-- <div>
     <div class="toggle-fav"><i class="far fa-star"></i></div>
     <div class="type">add to favorive</div>
@@ -69,19 +37,23 @@
     <div class="toggle-form">
       <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
 
-        <label for="point-title">point-title</label>
-        <input type="text" name="title" id="point-title"><br>
+        <div id = "pin-title-container">
+          <input type="text" name="title" id="point-title" placeholder="Title">
 
-        <label for="point-description">map_description</label>
-        <input type="text" name="description" id="point-description"><br>
+        </div>
 
-        <label for="point-latitude">point-latitude</label>
-        <input type="text" name="latitude" id="point-latitude" readonly><br>
+        <div id = "pin-description-container">
 
-        <label for="point-longitude">point-longitude</label>
-        <input type="text" name="longitude" id="point-longitude" readonly><br>
+          <input type="text" name="description" id="point-description" placeholder="Description">
+        </div>
 
-        <button id="point-submit-button">Save</button>
+        <input type="text" name="latitude" id="point-latitude" readonly>
+
+        <input type="text" name="longitude" id="point-longitude" readonly>
+        <div class="button-container">
+
+          <button id="point-submit-button">Save</button>
+        </div>
       </form>
     </div>
 
@@ -101,17 +73,6 @@
     </div>
   </div>
 
-<<<<<<< HEAD
-
-</div>
-
-
-
-  <div id="saved-points"></div>
-
-
-=======
->>>>>>> 01bf1724f2c1c8e4e17c42873677c2773f5e5dc0
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>

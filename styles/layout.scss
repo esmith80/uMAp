@@ -3,14 +3,11 @@
 @import './footer.scss';
 @import './main-content.layout.scss';
 @import './vars';
-<<<<<<< HEAD
 // @import './new-map-style.scss';
 @import'./create-new-map.scss';
-@import'./map.scss';
-=======
-@import './new-map-style.scss';
+// @import './new-map-style.scss';
 @import './createMarkers.scss';
->>>>>>> 01bf1724f2c1c8e4e17c42873677c2773f5e5dc0
+@import './pin-form.scss';
 
 * {
   box-sizing: border-box;
