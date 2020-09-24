@@ -1,9 +1,12 @@
-#map {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+#new-form-container {
+  #map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
 
+  }
 }
+
 
 #new-map-form {
   position:absolute;
@@ -47,14 +50,21 @@
     border-bottom-style: groove;
     outline:none;
     margin: auto 15px;
+    width: 85%;
   }
 
 }
-
-
 
 #new-form-container {
   display:flex;
   justify-content: center;
 }
 
+.city-error,
+.title-error,
+.description-error {
+  color: red;
+  margin: auto 15px;
+  width: 85%;
+  font-size: 12px;
+}

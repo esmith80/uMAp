@@ -22,16 +22,22 @@
 
       <form class="new-map" action="/api/map/new" method="POST">
         <!-- <label for="map_title">map_title</label> -->
-        <input class = "new-map-input" type="text" name="title" placeholder="Title">
+        <div id = "new-title-container">
+          <input id = "new-title-text" type="text" name="title" placeholder="Title">
+        </div>
 
         <!-- <label for="map_description">map_description</label> -->
-        <input class = "new-map-input"type="text" name="map_description" placeholder="Description">
+        <div id = "new-description-container">
+          <input id = "new-description-text"type="text" name="map_description" placeholder="Description">
+        </div>
 
         <!-- <label for="map_city">map_city</label> -->
-        <input class = "new-map-input" id="city-autocomplete" name="city" placeholder="Enter a city" type="text"/>
+        <div id= "new-city-container">
+          <input id = "new-city-text" id="city-autocomplete" name="city" placeholder="Enter a city" type="text"/>
+        </div>
 
         <!-- <label for="map_category">category</label> -->
-        <input class = "new-map-input" type="text" name="category" placeholder="Category">
+        <!-- <input id = "new-category-text" type="text" name="category" placeholder="Category"> -->
 
         <!-- <label for="send map to database">send map to database</label> -->
         <div class="button-container">
@@ -39,10 +45,10 @@
         </div>
       </form>
 
-        </div>
     </div>
-
     <div id="map"></div>
+  </div>
+
 
   <!-- <div id = 'new-map-form' class="container">
     <div class="w-50 mx-auto my-5 p-3 rounded shadow">

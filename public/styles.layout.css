@@ -11,6 +11,7 @@ header nav {
 header nav ul {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
 }
 header nav ul li {
@@ -18,6 +19,12 @@ header nav ul li {
 }
 header a {
   color: white;
+}
+
+.logout-btn {
+  padding: 5px;
+  color: #fff;
+  background-color: #333;
 }
 
 footer {
@@ -36,7 +43,6 @@ footer {
   margin-top: 5%;
   padding: 2%;
   width: 100%;
-  height: 90vh;
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
@@ -112,52 +118,85 @@ footer {
   padding: 5px;
 }
 
-.top-map {
+.map-options {
   display: flex;
-  margin: 15px;
-  width: 96vw;
+  margin-top: 30px;
+  justify-content: center;
+}
+.map-options .my-maps {
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.map-options .my-maps:hover {
+  background-color: #c6ecd7;
+}
+.map-options .favorite-maps {
+  padding: 5px;
+  border-radius: 10px;
+}
+.map-options .favorite-maps:hover {
+  background-color: #c6ecd7;
+}
+
+#new-form-container #map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#new-map-form {
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  top: 40%;
+  height: 270px;
+  width: 20%;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+#new-map-form h3 {
+  padding: 7px;
+  text-align: center;
+}
+#new-map-form .new-map {
+  padding: 5px;
+  display: flex;
+  height: 85%;
+  flex-direction: column;
   justify-content: space-evenly;
 }
-.top-map .single-map {
-  flex-basis: 75%;
-}
-.top-map #map {
-  width: 100%;
-  height: 400px;
-  background-color: grey;
-}
-.top-map .marker-list {
-  flex-basis: 20%;
-  border-radius: 18px;
-}
-.top-map .marker-list .marker-list-item {
-  border: 0.5px solid black;
-  height: 15vh;
-  background-color: white;
-}
-.top-map .marker-list .marker-list-item h5 {
-  margin: 5px;
-}
-.top-map .marker-list .marker-list-item p {
-  font-size: 12px;
-  margin: 5px;
-}
-.top-map .marker-item-bottom {
+#new-map-form .new-map .button-container {
   display: flex;
-  justify-content: space-between;
-  margin: auto 8px;
+  justify-content: center;
+  padding: 5px;
 }
-.top-map .marker-image-url {
-  height: 40px;
-  width: 25%;
-  border: 0.5px solid black;
+#new-map-form .new-map button {
+  width: 75px;
+  justify-content: center;
 }
-.top-map .marker-image-url img {
-  width: 100%;
-  height: 40px;
+#new-map-form input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+  margin: auto 15px;
 }
-.top-map .marker-list-item:hover {
-  background-color: #ebebeb;
+
+#new-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-map-container {
+  height: 80%;
+  width: 90%;
+}
+.main-map-container #map {
+  width: 50%;
+  height: 400px;
 }
 
 * {
@@ -173,7 +212,6 @@ a {
 .container {
   width: 96vw;
   margin: 0 auto;
-  position: relative;
 }
 
 body {

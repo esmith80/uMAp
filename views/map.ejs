@@ -20,9 +20,30 @@
 <body>
   <%- include('./partials/_header.ejs') %>
 
-  <div id="map"></div>
+  <div id = "map-title">
+   <h1><%= map.title %></h1>
+  </div>
 
-  <button id="add-point-button">Add Point</button>
+  <div class= "map-description">
+
+    <p>
+      <%= map.description %>
+    </p>
+
+  </div>
+
+<div class = "main-map-container">
+
+  <div id = "map-container">
+
+    <div id="map"></div>
+
+  </div>
+
+  <div>
+    <button id="add-point-button">Add Point</button>
+  </div>
+
   <div id="new-point-form">
 
     <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
@@ -46,6 +67,11 @@
       <input type="submit" id="point-submit-button" value="Save Point"><br>
     </form>
   </div>
+
+
+</div>
+
+
 
   <div id="saved-points"></div>
 
