@@ -17,9 +17,9 @@
 
   <div id="map"></div>
 
-  <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
-    <div id="new-point-form">
+  <div class="toggle-form">
 
+    <div id="new-point-form">
       <div class="point-form-heder">
         <button class="add-marker">Add marker</button>
         <div class="add-fav">
@@ -28,66 +28,53 @@
         </div>
       </div>
 
-      <label for="point-description">point_description</label>
-      <input type="text" name="description" id="point-description"><br>
-      <div class="toggle-form">
-        <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
+      <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
 
-          <label for="point-title">point-title</label>
-          <input type="text" name="title" id="point-title"><br>
+        <label for="point-title">title</label>
+        <input type="text" name="title" id="point-title"><br>
 
-      <label for="point-latitude">point-latitude</label>
-      <input type="hidden" name="latitude" id="point-latitude"><br>
+        <label for="point-description">description</label>
+        <input type="text" name="description" id="point-description"><br>
 
-      <label for="point-longitude">point-longitude</label>
-      <input type="hidden" name="longitude" id="point-longitude"><br>
-          <label for="point-description">map_description</label>
-          <input type="text" name="description" id="point-description"><br>
+        <label for="point-image-url">image</label>
+        <input type="text" name="image_url" id="point-description"><br>
 
-          <label for="point-latitude">point-latitude</label>
-          <input type="text" name="latitude" id="point-latitude" readonly><br>
+        <!-- hidden attributes user gets lat and lng by clicking on map -->
+        <input type="hidden" name="latitude" id="point-latitude">
+        <input type="hidden" name="longitude" id="point-longitude">
 
-          <label for="point-longitude">point-longitude</label>
-          <input type="text" name="longitude" id="point-longitude" readonly><br>
+        <button id="point-submit-button">Save</button>
 
-  <br>
-  <br>
+      </form>
 
-  <!-- many edit-point-controls so it needs to be a class that appears on each point listing-->
-  <!-- this form needs to Edit existing Point (pin) record in db -->
+    </div>
+
+  </div>
 
   <div id="edit-point-form" style="display: none">EDIT POINT FORM
     <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
     <form id="edit-form">
 
-      <label for="point-title">point-title</label>
+      <label for="point-title">title</label>
       <input type="text" name="title" id="edit-point-title"><br>
 
-      <label for="point-description">point_description</label>
+      <label for="point-description">description</label>
       <input type="text" name="description" id="edit-point-description"><br>
 
-      <label for="point-image-url">point-image-url</label>
+      <label for="point-image-url">image-url</label>
       <input type="text" name="image_url" id="edit-point-image-url"><br>
 
       <!-- hidden attributes -->
       <input type="hidden" name="latitude" id="edit-point-latitude">
       <input type="hidden" name="longitude" id="edit-point-longitude">
       <input type="hidden" name="id" id="edit-point-id">
-
-      <br>
+      <input type="hidden" name="map_id" id="edit-point-mapid">
 
       <input type="submit" id="edit-point-submit" value="SUBMIT EDITS"><br>
     </form>
   </div>
 
   <br>
-
-  <div id="saved-points">EXAMPLE SAVED POINTS<br>
-
-
-  </div>
-
-
 
     <div class="marker-list">
       <ul>
@@ -97,23 +84,13 @@
         <li ><%= marker.image_url%></li>
 
 
-        <button class="edit-point-control" data-pindata=<%=[marker.id, marker.description, marker.image_url, marker.latitude, marker.longitude] %>>Edit this Point</button>
-        <br>
+        <button class="edit-point-control" data-pindata=<%=[marker.id, marker.map_id, marker.latitude, marker.longitude] %>>Edit this Point</button>
+        <button class="delete-point-control" data-pinid=<%= marker.id %>>DELETE this Point</button>
         <br>
         <% } %>
       </ul>
     </div>
-
-
-
-
-
-  </div>
-
-          <button id="point-submit-button">Save</button>
-        </form>
-      </div>
-
+<!--
       <div class="marker-list">
         <ul>
           <% for(const marker of pins) {%>
@@ -128,10 +105,7 @@
           <% } %>
         </ul>
       </div>
-    </div>
-
-    </div>
-
+  -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

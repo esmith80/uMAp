@@ -72,6 +72,7 @@ function initMap() {
 $('.marker-list').on('click', (event) => {
   console.log('marker-list clicked');
   //document.getElementById('testid').readOnly = false;
+
 $(document).ready(() => {
   // get all marker for single map
   const mapId = $('#point-form').data('mapid');
@@ -85,6 +86,8 @@ $(document).ready(() => {
     }
   });
 });
+
+
 // create map
 $('.new-map').submit(function (event) {
   event.preventDefault();
@@ -112,6 +115,7 @@ $('.new-map').submit(function (event) {
   $.post('/api/map/new', serializedData);
 });
 
+
 // Create new pin
 $('#point-form').submit(function (event) {
   event.preventDefault();
@@ -120,6 +124,7 @@ $('#point-form').submit(function (event) {
   $.post(`/api/pin/${mapId}`, serializedData);
   $(this).children('input').val('');
 });
+
 
 // add  to favorite map
 $('.toggle-fav').click(function () {
@@ -141,20 +146,19 @@ let editFormVisible = false;
 
 $('.edit-point-control').on('click', function (event) {
   //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+  console.log('entered .edit-point-control handler');
   if (!editFormVisible) {
     $('#edit-point-form').slideDown('slow');
    editFormVisible = true;
   }
   // identify the point/pin that was clicked and put all data in pinid button
   let pinData = $(this).data('pindata').split(",");
-  console.log('here is the pinData: ', pinData);
-  const [id, title, description, imageUrl, latitude, longitude] = pinData;
 
+  console.log('pinData: ', pinData);
+  const [id, mapId, latitude, longitude] = pinData;
   //populate form with values from selected point to edit
   $('#edit-point-id').val(id);
-  $('#edit-point-title').val(title);
-  $('#edit-point-description').val(description);
-  $('#edit-point-image-url').val(imageUrl);
+  $('#edit-point-mapid').val(mapId);
   $('#edit-point-latitude').val(latitude);
   $('#edit-point-longitude').val(longitude);
 });
@@ -169,10 +173,23 @@ $('#edit-form').submit(function (event) {
 
   const pinId = $('#edit-point-id').val();
   console.log('pinId ', pinId);
-  const mapId = 18;
+  const mapId = 20;
   // needs to go to route for pinId, not mapId
   // document.getElementById("#edit-form").reset();
+  console.log('about to post to /api/pin/mapid/pinid');
   $.post(`/api/pin/${mapId}/${pinId}`, serializedData);
+  // need get request to update page after new data is sent to database
+  $.get(`/api/map/${mapId}`);
+});
+
+$('.delete-point-control').on('click', function (event) {
+
+  let pinId = $(this).data('pinid');
+  console.log('pinid ', pinId);
+  $.post(`/api/pin/${pinId}/delete`);
+  $.get('/api/login');
+
+
 });
 
 
@@ -191,6 +208,4 @@ $('.delete-marker').click(() => {
 //let autocomplete = new google.maps.places.Autocomplete(
 //    document.getElementById('city-autocomplete')
 // )
-
-
-
+});
