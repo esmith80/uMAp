@@ -18,24 +18,24 @@
     <h2 class="map-title">Favorite maps</h2>
     <div class="cards-list">
       <% for(const map of favMaps) {%>
-      <a href="/api/map/<%= map.map_id %>">
-        <div class="card">
-          <div class="card-image">
-          </div>
+      <div class="card">
+        <div class="card-image">
+        </div>
 
-          <div class="card-text">
-            <h3><%= map.title %></h3>
-            <p><%= map.map_description %></p>
-          </div>
-          <div class="card-stats">
-            <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
-            <div class="stat fav" data-mapid="<%= map.id %>">
-              <div class="value"><i class="far fa-star"></i></div>
-              <div class="type">add to favorive</div>
-            </div>
+        <div class="card-text">
+          <h3><%= map.title %></h3>
+          <p><%= map.map_description %></p>
+          <a href="/api/map/<%= map.id %>">go to</a>
+
+        </div>
+        <div class="card-stats">
+          <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
+          <div class="stat fav" data-mapid="<%= map.id %>">
+            <div class="value"><i class="far fa-star"></i></div>
+            <div class="type">add to favorive</div>
           </div>
         </div>
-      </a>
+      </div>
       <% }%>
 
     </div>

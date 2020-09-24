@@ -18,14 +18,15 @@
     <h2 class="map-title">All Maps</h2>
     <div class="cards-list">
       <% for(const map of allMaps) {%>
-      <!-- <a href="/api/map/<%= map.id %>"> -->
+
       <div class="card">
         <div class="card-image">
         </div>
-
         <div class="card-text">
           <h3><%= map.title %></h3>
           <p><%= map.map_description %></p>
+
+          <a href="/api/map/<%= map.id %>">go to</a>
         </div>
         <div class="card-stats">
           <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
@@ -37,7 +38,7 @@
       </div>
       <% } %>
     </div>
-    <!-- </a> -->
+
 
     </div>
     </div>

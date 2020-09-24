@@ -57,6 +57,7 @@
             <button id="point-submit-button">Save</button>
           </div>
         </div>
+
         </form>
       </div>
 
@@ -64,13 +65,10 @@
         <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
         <form id="edit-form">
 
-
           <input type="text" name="title" id="edit-point-title" placeholder="New Title">
 
-          <!-- <label for="point-description">description</label> -->
           <input type="text" name="description" id="edit-point-description" placeholder="New Description">
 
-          <!-- <label for="point-image-url">image-url</label> -->
           <input type="text" name="image_url" id="edit-point-image-url" placeholder="New Image URL">
 
           <!-- hidden attributes -->
@@ -79,14 +77,13 @@
           <input type="hidden" name="id" id="edit-point-id">
           <input type="hidden" name="map_id" id="edit-point-mapid">
 
-
           <button id="edit-point-submit">Save</button>
           <button id="cancel-edit">Cancel</button>
         </form>
       </div>
 
       <div class="marker-list">
-        <ul>
+        <ul class="marker">
           <% for(const marker of pins) {%>
           <li>
             <div>
@@ -105,12 +102,39 @@
           <% } %>
         </ul>
       </div>
+    </div>
 
-      <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-      <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
 
-      <script src="/scripts/createNewMap.js"></script>
+    <div id="edit-point-form" style="display: none">
+      <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
+      <form id="edit-form">
+
+
+        <input type="text" name="title" id="edit-point-title" placeholder="New Title">
+
+        <!-- <label for="point-description">description</label> -->
+        <input type="text" name="description" id="edit-point-description" placeholder="New Description">
+
+        <!-- <label for="point-image-url">image-url</label> -->
+        <input type="text" name="image_url" id="edit-point-image-url" placeholder="New Image URL">
+
+        <!-- hidden attributes -->
+        <input type="hidden" name="latitude" id="edit-point-latitude">
+        <input type="hidden" name="longitude" id="edit-point-longitude">
+        <input type="hidden" name="id" id="edit-point-id">
+        <input type="hidden" name="map_id" id="edit-point-mapid">
+
+
+        <button id="edit-point-submit">Save</button>
+        <button id="cancel-edit">Cancel</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+
+    <script src="/scripts/createNewMap.js"></script>
 </body>
 
 </html>
