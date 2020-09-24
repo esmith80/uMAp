@@ -11,6 +11,7 @@ const {
   getFavoriteMaps,
   getAllMaps,
   getContributedMapsByUserID,
+  checkIfFavorite,
 } = require('../db/queries/map.queries');
 const { getAllPins } = require('../db/queries/pin.queries');
 
@@ -76,7 +77,9 @@ module.exports = (db) => {
     const queryParams = { body: req.body, user: user.userId };
 
     createNewMap(queryParams, db)
-      .then((newMap) => res.redirect(`/api/map/${newMap.id}`))
+      .then((newMap) => {
+        res.redirect(`/api/map/${newMap.id}`);
+      })
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });
 
@@ -85,7 +88,9 @@ module.exports = (db) => {
     getMapByID(req.params.id, db)
       .then((map) => {
         getAllPins(map.id, db).then((pins) => {
-          res.render('map', { map, user, pins });
+          checkIfFavorite(map.id, db).then((isFav) =>
+            res.render('map', { map, user, pins, isFav })
+          );
         });
       })
       .catch((err) =>

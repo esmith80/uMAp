@@ -101,4 +101,12 @@ module.exports = {
 
     return db.query(searchQuery, [userId]).then(({ rows: maps }) => maps);
   },
+
+  checkIfFavorite: (mapId, db) => {
+    const searchQuery = `SELECT map_id FROM favorites WHERE map_id = $1`;
+
+    return db.query(searchQuery, [mapId]).then(({ rows: id }) => {
+      return id.length ? true : false;
+    });
+  },
 };
