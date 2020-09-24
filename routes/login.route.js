@@ -5,7 +5,7 @@ module.exports = (db) => {
   //  /api/login
   router.get('/', (req, res) => {
     const user = req.session.user;
-    console.log('login user', user);
+
     res.render('login', { user });
   });
 

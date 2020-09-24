@@ -13,7 +13,7 @@ module.exports = (db) => {
   router.get('/:mapId', (req, res) => {
     const { mapId } = req.params;
     getAllPins(mapId, db)
-      .then((pins) => res.status(200).json(pins))
+      .then((pins) => res.json({ pins }))
       .catch((err) => res.status(500).json({ msg: 'fail to load pins' }));
   });
 

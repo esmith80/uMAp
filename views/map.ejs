@@ -4,14 +4,9 @@
 <head>
   <title>Simple Map</title>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
   <!-- javascript -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly"
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap"
     defer></script>
-  <!-- <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script> -->
 
   <!-- stylesheets -->
   <link rel="stylesheet" href="/styles/layout.css" />
@@ -22,45 +17,57 @@
 
   <div id="map"></div>
 
-  <div>
+  <!-- <div>
     <div class="toggle-fav"><i class="far fa-star"></i></div>
     <div class="type">add to favorive</div>
-  </div>
+  </div> -->
 
   <hr>
 
   <div id="new-point-form">
 
-    <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
-      New Point Data<br>
+    <div class="point-form-heder">
+      <button class="add-marker">Add marker</button>
+      <div class="add-fav">
+        <div class="toggle-fav"><i class="far fa-star"></i></div>
+        <div class="type">add to favorive</div>
+      </div>
+    </div>
 
-      <label for="point-title">point-title</label>
-      <input type="text" name="title" id="point-title"><br>
+    <div class="toggle-form">
+      <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
 
-      <label for="point-description">map_description</label>
-      <input type="text" name="description" id="point-description"><br>
+        <label for="point-title">point-title</label>
+        <input type="text" name="title" id="point-title"><br>
 
-      <label for="point-image-url">point-image-url</label>
-      <input type="text" name="image_url" id="point-image-url"><br>
+        <label for="point-description">map_description</label>
+        <input type="text" name="description" id="point-description"><br>
 
-      <label for="point-latitude">point-latitude</label>
-      <input type="text" name="latitude" id="point-latitude"><br>
+        <label for="point-latitude">point-latitude</label>
+        <input type="text" name="latitude" id="point-latitude" readonly><br>
 
-      <label for="point-longitude">point-longitude</label>
-      <input type="text" name="longitude" id="point-longitude"><br>
+        <label for="point-longitude">point-longitude</label>
+        <input type="text" name="longitude" id="point-longitude" readonly><br>
 
-      <input type="submit" id="point-submit-button" value="Save Point"><br>
-    </form>
+        <button id="point-submit-button">Save</button>
+      </form>
+    </div>
+
+    <div class="marker-list">
+      <ul>
+        <% for(const marker of pins) {%>
+        <li>
+          <div><%= marker.title %></div>
+          <div><%= marker.description %></div>
+          <div>
+            <button>edit</button>
+            <button data-markerid='<%= marker.id %>' class="delete-marker">delete</button>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
   </div>
-
-  <div id="saved-points"></div>
-
-  <% for(const pin of pins) {%>
-
-  <div data-pin-id=<%= pin.id %>> title - <%= pin.title %></div>
-  <div> desc - <%= pin.description %></div>
-  <% } %>
-
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>

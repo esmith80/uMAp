@@ -32,7 +32,6 @@ module.exports = (db) => {
   router.get('/fav', (req, res) => {
     const user = req.session.user;
     getFavoriteMaps(user.userId, db).then((favMaps) => {
-      console.log(favMaps);
       res.render('favmaps', { user, favMaps });
     });
   });
@@ -58,9 +57,7 @@ module.exports = (db) => {
     const queryParams = { body: req.body, user: user.userId };
 
     createNewMap(queryParams, db)
-      .then((newMap) => {
-        res.redirect(`/api/map/${newMap.id}`);
-      })
+      .then((newMap) => res.redirect(`/api/map/${newMap.id}`))
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });
 
