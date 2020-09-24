@@ -20,7 +20,20 @@ display:none;
   display:flex;
   flex-direction:column;
   align-items:center;
+
   #point-description {
+    width:90%;
+    height:25px;
+    margin:5px;
+  }
+}
+
+#pin-image-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  #point-image {
     width:90%;
     height:25px;
     margin:5px;
@@ -39,6 +52,7 @@ input {
 .toggle-form {
   display:flex;
   flex-direction: column;
+  // background-color: #faf9ed;
 
   .button-container {
     display:flex;
@@ -55,7 +69,8 @@ input {
 
 .pin-title-error,
 .pin-desc-error,
-.pin-lat-long-error {
+.pin-lat-long-error,
+.pin-img-error {
 
   color: red;
   width: 90%;

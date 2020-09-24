@@ -40,19 +40,20 @@
         <div>
           <div id="pin-title-container">
             <input type="text" name="title" id="point-title" placeholder="Title">
-
           </div>
 
           <div id="pin-description-container">
-
             <input type="text" name="description" id="point-description" placeholder="Description">
           </div>
 
+          <div id="pin-image-container">
+            <input type="text" name="image_url" id="point-image" placeholder="Image URL">
+          </div>
+
           <input type="text" name="latitude" id="point-latitude" readonly>
-
           <input type="text" name="longitude" id="point-longitude" readonly>
-          <div class="button-container">
 
+          <div class="button-container">
             <button id="point-submit-button">Save</button>
           </div>
         </div>
@@ -63,14 +64,14 @@
         <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
         <form id="edit-form">
 
-          <label for="point-title">title</label>
-          <input type="text" name="title" id="edit-point-title"><br>
 
-          <label for="point-description">description</label>
-          <input type="text" name="description" id="edit-point-description"><br>
+          <input type="text" name="title" id="edit-point-title" placeholder="New Title">
 
-          <label for="point-image-url">image-url</label>
-          <input type="text" name="image_url" id="edit-point-image-url"><br>
+          <!-- <label for="point-description">description</label> -->
+          <input type="text" name="description" id="edit-point-description" placeholder="New Description">
+
+          <!-- <label for="point-image-url">image-url</label> -->
+          <input type="text" name="image_url" id="edit-point-image-url" placeholder="New Image URL">
 
           <!-- hidden attributes -->
           <input type="hidden" name="latitude" id="edit-point-latitude">
@@ -78,7 +79,9 @@
           <input type="hidden" name="id" id="edit-point-id">
           <input type="hidden" name="map_id" id="edit-point-mapid">
 
-          <button id="edit-point-submit">Edit</button>
+
+          <button id="edit-point-submit">Save</button>
+          <button id="cancel-edit">Cancel</button>
         </form>
       </div>
 
@@ -86,33 +89,28 @@
         <ul>
           <% for(const marker of pins) {%>
           <li>
-            <div><%= marker.title %></div>
-            <div><%= marker.description %></div>
             <div>
+              <img src=<%= marker.image_url %> </div> <div class="marker-title-container">
+              <h4><%= marker.title %></h4>
+            </div>
+            <div class="marker-description-container">
+              <p><%= marker.description %></p>
+            </div>
+            <div class="marker-button-container">
               <button class="edit-point-control"
                 data-pindata=<%=[marker.id, marker.map_id, marker.latitude, marker.longitude] %>>Edit</button>
-              <button class="delete-point-control" data-pinid=<%= marker.id %>>DELETE</button>
+              <button class="delete-point-control" data-pinid=<%= marker.id %>>Delete</button>
             </div>
           </li>
           <% } %>
         </ul>
       </div>
-    </div>
 
+      <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
-
-    <script src="/scripts/createNewMap.js"></script>
+      <script src="/scripts/createNewMap.js"></script>
 </body>
 
 </html>

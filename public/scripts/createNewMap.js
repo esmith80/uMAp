@@ -98,9 +98,12 @@ $('#point-form').submit(function (event) {
   event.preventDefault();
   $('.pin-title-error').remove();
   $('.pin-desc-error').remove();
+  $('.pin-img-error').remove();
   $('.pin-lat-long-error').remove();
   const pinTitleText = $('#point-title').val();
   const pinDescText = $('#point-description').val();
+  const pinImgText = $('#point-image').val();
+  console.log(pinImgText);
   const pinLatText = $('#point-latitude').val();
   const pinLongText = $('#point-longitude').val();
 
@@ -112,16 +115,22 @@ $('#point-form').submit(function (event) {
     return $('#pin-description-container').append(
       $('<p>').addClass('pin-desc-error').text("Description can't be blank")
     );
+  } else if (pinImgText === '') {
+    return $('#pin-image-container').append(
+      $('<p>').addClass('pin-img-error').text('Please add an image')
+    );
   } else if (pinLatText === '' || pinLongText === '') {
-    return $('#pin-description-container').append(
+    return $('#pin-image-container').append(
       $('<p>')
         .addClass('pin-lat-long-error')
         .text('Please select a point on map')
     );
   }
   const serializedData = $(this).serialize();
+  console.log(serializedData);
   const mapId = $('#point-form').data('mapid');
   $.post(`/api/pin/${mapId}`, serializedData);
+
   $(this).children('input').val('');
 });
 
@@ -144,6 +153,7 @@ let editFormVisible = false;
 
 $('.edit-point-control').on('click', function (event) {
   //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+  console.log('Edit button clicked');
   if (!editFormVisible) {
     $('#edit-point-form').slideDown('slow');
     editFormVisible = true;
@@ -159,10 +169,19 @@ $('.edit-point-control').on('click', function (event) {
   $('#edit-point-longitude').val(longitude);
 });
 
+// Cancel edit form
+
+$('#cancel-edit').click(function () {
+  editFormVisible = false;
+  $('#edit-point-form').slideUp('slow');
+});
+
 // event listener for Submit Edit Point
 $('#edit-form').submit(function (event) {
   event.preventDefault();
-  $('#edit-form').slideUp('slow');
+  editFormVisible = false;
+  $('#edit-point-form').slideUp('slow');
+
   const serializedData = $(this).serialize();
   // how are we getting map id and pin id
 
