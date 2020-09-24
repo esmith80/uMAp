@@ -47,7 +47,6 @@ module.exports = {
       updateQuery += `WHERE id = $${queryParams.length} RETURNING *;`;
     }
     updateQuery = removeLastCommaBeforeWhere(updateQuery);
-    console.log(updateQuery, queryParams);
 
     return db
       .query(updateQuery, queryParams)

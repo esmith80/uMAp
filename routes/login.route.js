@@ -5,7 +5,7 @@ module.exports = (db) => {
   //  /api/login
   router.get('/', (req, res) => {
     const user = req.session.user;
-    console.log('login user', user);
+
     res.render('login', { user });
   });
 
@@ -27,7 +27,7 @@ module.exports = (db) => {
           useremail: email,
         };
 
-        res.redirect('/api/map');
+        res.redirect('/api/map/allmaps');
       })
       .catch((err) => res.status(400).json({ msg: err }));
   });

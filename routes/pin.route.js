@@ -13,14 +13,16 @@ module.exports = (db) => {
   router.get('/:mapId', (req, res) => {
     const { mapId } = req.params;
     getAllPins(mapId, db)
-      .then((pins) => res.status(200).json(pins))
+      .then((pins) => res.json({ pins }))
       .catch((err) => res.status(500).json({ msg: 'fail to load pins' }));
   });
 
   // Create new pin
   router.post('/:mapId', (req, res) => {
     const { mapId } = req.params;
-    createNewPin(req.body, mapId, db)
+    const { userId } = req.session.user;
+
+    createNewPin(req.body, mapId, userId, db)
       .then((pin) => res.status(200).json(pin))
       .catch((err) => res.status(500).json({ msg: 'fail to add a pin' }));
   });

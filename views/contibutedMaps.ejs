@@ -15,9 +15,11 @@
   <%- include('./partials/_header.ejs') %>
 
   <main class="container">
-    <h2 class="map-title">Favorite maps</h2>
+
+    <h2 class="map-title">Contributed to</h2>
     <div class="cards-list">
-      <% for(const map of favMaps) {%>
+      <% for(const map of maps) {%>
+
       <div class="card">
         <div class="card-image">
         </div>
@@ -25,6 +27,7 @@
         <div class="card-text">
           <h3><%= map.title %></h3>
           <p><%= map.map_description %></p>
+
           <a href="/api/map/<%= map.id %>">go to</a>
 
         </div>
@@ -35,9 +38,11 @@
             <div class="type">add to favorive</div>
           </div>
         </div>
-      </div>
-      <% }%>
 
+      </div>
+
+      <% } %>
+    </div>
     </div>
 
   </main>

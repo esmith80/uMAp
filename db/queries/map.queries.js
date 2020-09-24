@@ -3,7 +3,7 @@ const { removeLastCommaBeforeWhere } = require('../../utils/helperFunctions');
 module.exports = {
   getMapsByUserId: (userId, db) => {
     const searchQuery = `SELECT * FROM maps WHERE user_id = $1`;
-    console.log('userid', userId);
+
     return db
       .query(searchQuery, [userId])
       .then(({ rows: userMaps }) => userMaps);
@@ -16,7 +16,9 @@ module.exports = {
   },
 
   createNewMap: (queryParams, db) => {
-    const { title, map_description, userId, city, category } = queryParams[0];
+    const { title, map_description, city, category } = queryParams.body;
+    const { user: userId } = queryParams;
+
     const searchQuery = `
     INSERT INTO
       maps(title, map_description, user_id, city, category)
@@ -24,7 +26,7 @@ module.exports = {
     ($1, $2, $3, $4, $5)
     RETURNING *;`;
 
-    return db
+    return db // added user_id to next line
       .query(searchQuery, [title, map_description, userId, city, category])
       .then(({ rows: newMap }) => newMap[0]);
   },
@@ -69,5 +71,42 @@ module.exports = {
     const searchQuery = `DELETE FROM maps WHERE id = $1;`;
 
     return db.query(searchQuery, [id]);
+  },
+
+  addMapToFavorite: (mapId, userId, db) => {
+    const addQuery = `INSERT INTO favorites(map_id, user_id) VALUES($1, $2);`;
+
+    return db.query(addQuery, [mapId, userId]);
+  },
+
+  removeMapFromFavorite: (mapId, db) => {
+    const deleteQuery = `DELETE FROM favorites WHERE map_id = $1;`;
+
+    return db.query(deleteQuery, [mapId]);
+  },
+
+  getFavoriteMaps: (userId, db) => {
+    const searchQuery = `SELECT * from maps JOIN favorites ON maps.id = map_id WHERE favorites.user_id = $1;`;
+
+    return db.query(searchQuery, [userId]).then(({ rows: favMaps }) => favMaps);
+  },
+
+  getAllMaps: (db) => {
+    const searchQuery = `SELECT * FROM maps;`;
+
+    return db.query(searchQuery).then(({ rows: allMaps }) => allMaps);
+  },
+  getContributedMapsByUserID: (userId, db) => {
+    const searchQuery = `SELECT maps.*  FROM maps JOIN points ON maps.id = map_id WHERE points.created_by = $1`;
+
+    return db.query(searchQuery, [userId]).then(({ rows: maps }) => maps);
+  },
+
+  checkIfFavorite: (mapId, db) => {
+    const searchQuery = `SELECT map_id FROM favorites WHERE map_id = $1`;
+
+    return db.query(searchQuery, [mapId]).then(({ rows: id }) => {
+      return id.length ? true : false;
+    });
   },
 };

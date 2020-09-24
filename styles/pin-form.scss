@@ -1,0 +1,80 @@
+#point-longitude,
+#point-latitude {
+display:none;
+}
+
+#pin-title-container {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+
+  #point-title {
+    width:90%;
+    height:25px;
+    margin: 5px;
+  }
+
+}
+
+#pin-description-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  #point-description {
+    width:90%;
+    height:25px;
+    margin:5px;
+  }
+}
+
+#pin-image-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  #point-image {
+    width:90%;
+    height:25px;
+    margin:5px;
+  }
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline:none;
+
+}
+
+.toggle-form {
+  display:flex;
+  flex-direction: column;
+  // background-color: #faf9ed;
+
+  .button-container {
+    display:flex;
+    justify-content: center;
+  }
+
+  button {
+    width: 60px;
+    margin: 15px;
+
+  }
+
+}
+
+.pin-title-error,
+.pin-desc-error,
+.pin-lat-long-error,
+.pin-img-error {
+
+  color: red;
+  width: 90%;
+  font-size: 12px;
+  margin:5px
+}
+

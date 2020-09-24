@@ -1,17 +1,6 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
 header {
   background-color: #3CB371;
-  height: 100px;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
 }
 header nav {
@@ -22,49 +11,20 @@ header nav {
 header nav ul {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
 }
 header nav ul li {
-  padding: 15px;
+  padding: 10px;
 }
 header a {
   color: white;
 }
 
-.container {
-  display: flex;
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-}
-.container h2 {
-  padding: 10px;
-}
-.container .map-lists {
-  width: 40%;
-  background-color: white;
-  padding: 10px;
-  height: 65vh;
-}
-.container .map-lists ul {
-  list-style-type: none;
-  padding: 15px;
-  width: 100%;
-}
-.container .map-lists ul li {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-.container .map {
-  width: 50%;
-  margin: 10px 10px;
-}
-.container .map img {
-  width: 100%;
-  height: auto;
+.logout-btn {
+  padding: 5px;
+  color: #fff;
+  background-color: #333;
 }
 
 footer {
@@ -76,8 +36,453 @@ footer {
   width: 100%;
 }
 
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-gap: 40px;
+  margin-top: 5%;
+  padding: 2%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 13em 13em 4.5em;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 9px 9px 15px -2px rgba(0, 0, 0, 0.52);
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card-image {
+  grid-area: image;
+  background: url("https://picsum.photos/350/210");
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background-size: cover;
+  position: relative;
+}
+
+.card-text {
+  grid-area: text;
+  margin: 25px;
+}
+.card-text p {
+  color: #333;
+  font-weight: 400;
+}
+
+.card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  background-color: #3CB371;
+}
+.card-stats .stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  color: #fff;
+}
+.card-stats .type {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.card-stats .value {
+  font-size: 20px;
+}
+
+.card-like-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: red;
+  background-color: #fff;
+  font-size: 20px;
+  border-radius: 45%;
+  padding: 5px;
+}
+
+.map-options {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+.map-options .my-maps {
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.map-options .my-maps:hover {
+  background-color: #c6ecd7;
+}
+.map-options .favorite-maps {
+  padding: 5px;
+  border-radius: 10px;
+}
+.map-options .favorite-maps:hover {
+  background-color: #c6ecd7;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#new-map-form {
+  height: 30%;
+}
+
+#map {
+  height: 60%;
+  width: 40%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
 body {
-  background-color: #EEE;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.point-attribute {
+  border: none;
+  padding: 10px;
+  background-color: bisque;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+}
+
+#edit-control {
+  padding: 10px;
+  background-color: cornflowerblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
+  color: hotpink;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#new-point-form {
+  position: absolute;
+  border-radius: 10px;
+  padding: 1em;
+  top: 17%;
+  left: 10px;
+  background-color: #fff;
+  height: 90vh;
+  width: 20em;
+}
+
+.point-form-heder {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #3CB371;
+  padding: 0.5em;
+}
+.point-form-heder .toggle-fav {
+  text-align: center;
+}
+.point-form-heder .add-fav {
+  cursor: pointer;
+}
+.point-form-heder .add-marker {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #333;
+  color: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.marker-list {
+  margin-top: 10px;
+  overflow-y: scroll;
+}
+.marker-list ul {
+  height: 60vh;
+  overflow-y: scroll;
+  list-style: none;
+}
+.marker-list li {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.marker-list .marker-title-container {
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list .marker-description-container {
+  font-size: 12px;
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list .marker-button-container {
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#new-form-container #map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#new-map-form {
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  top: 40%;
+  height: 270px;
+  width: 20%;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+#new-map-form h3 {
+  padding: 7px;
+  text-align: center;
+}
+#new-map-form .new-map {
+  padding: 5px;
+  display: flex;
+  height: 85%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#new-map-form .new-map .button-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+#new-map-form .new-map button {
+  width: 75px;
+  justify-content: center;
+}
+#new-map-form input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+  margin: auto 15px;
+  width: 85%;
+}
+
+#new-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.city-error,
+.title-error,
+.description-error {
+  color: red;
+  margin: auto 15px;
+  width: 85%;
+  font-size: 12px;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#new-point-form {
+  position: absolute;
+  border-radius: 10px;
+  padding: 1em;
+  top: 17%;
+  left: 10px;
+  background-color: #fff;
+  height: 90vh;
+  width: 20em;
+}
+
+.point-form-heder {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #3CB371;
+  padding: 0.5em;
+}
+.point-form-heder .toggle-fav {
+  text-align: center;
+}
+.point-form-heder .add-fav {
+  cursor: pointer;
+}
+.point-form-heder .add-marker {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #333;
+  color: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.marker-list {
+  margin-top: 10px;
+  overflow-y: scroll;
+}
+.marker-list ul {
+  height: 60vh;
+  overflow-y: scroll;
+  list-style: none;
+}
+.marker-list li {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.marker-list .marker-title-container {
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list .marker-description-container {
+  font-size: 12px;
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list .marker-button-container {
+  margin: 5px 3px;
+  padding: 5px;
+}
+.marker-list img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#point-longitude,
+#point-latitude {
+  display: none;
+}
+
+#pin-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#pin-title-container #point-title {
+  width: 90%;
+  height: 25px;
+  margin: 5px;
+}
+
+#pin-description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#pin-description-container #point-description {
+  width: 90%;
+  height: 25px;
+  margin: 5px;
+}
+
+#pin-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#pin-image-container #point-image {
+  width: 90%;
+  height: 25px;
+  margin: 5px;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+}
+
+.toggle-form {
+  display: flex;
+  flex-direction: column;
+}
+.toggle-form .button-container {
+  display: flex;
+  justify-content: center;
+}
+.toggle-form button {
+  width: 60px;
+  margin: 15px;
+}
+
+.pin-title-error,
+.pin-desc-error,
+.pin-lat-long-error,
+.pin-img-error {
+  color: red;
+  width: 90%;
+  font-size: 12px;
+  margin: 5px;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 96vw;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #f4f4f4;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
 }
 body h1 {
   color: #244751;

@@ -1,12 +1,24 @@
 <header>
   <div class="nav-main">
     <nav>
-      <h1 class="logo">UMap</h1>
+      <div class="nav-menu">
+        <h1 class="logo">UMap</h1>
+        <ul>
+          <li class="nav-btn"><a href="/api/map/allmaps">Home</a></li>
+          <li class="nav-btn"><a href="/api/map/new">New Map</a></li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Maps</button>
+              <div class="dropdown-content">
+                <a href="/api/map/fav">Favorite maps</a>
+                <a href="/api/map/contributed">Contributed to</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
       <ul>
-        <li><a href="/api/map">Home</a></li>
-        <li><a href="#">Create New Map</a></li>
         <li>
-
           <% if(user.userId !== 'hello') {%>
           <span class="mr-4">Welcome: <%= user.username %></span>
           <button class="logout-btn">

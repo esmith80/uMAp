@@ -3,6 +3,11 @@
 @import './footer.scss';
 @import './main-content.layout.scss';
 @import './vars';
+@import './new-map-style.scss';
+@import './createMarkers.scss';
+@import'./create-new-map.scss';
+@import './pin-form.scss';
+@import'./edit-pin-form.scss';
 
 * {
   box-sizing: border-box;

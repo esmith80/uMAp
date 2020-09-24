@@ -58,13 +58,9 @@ app.use('/api/map', mapRoute(db));
 app.use('/api/pin', pinRoute(db));
 app.use('/api/comment', mapReviewsRoute(db));
 
-// app.get('/', (req, res) => {
-//   const { userId, username, useremail } = req.session.user;
-//   if (userId === 'hello') {
-//     res.redirect('/api/login');
-//   }
-//   res.render('index', { userId, username, useremail });
-// });
+app.get('/', (req, res) => {
+  res.redirect('/api/login');
+});
 // logout route
 app.get('/logout', (req, res) => {
   req.session.user = '';

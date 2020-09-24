@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=places&v=weekly"
+    defer ></script>
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+</head>
+
+<body>
+  <%- include('./partials/_header.ejs') %>
+
+  <div id = "new-form-container">
+
+    <div id="new-map-form">
+
+      <h3>Map Details</h3>
+
+      <form class="new-map" action="/api/map/new" method="POST">
+        <div id = "new-title-container">
+          <input id = "new-title-text" type="text" name="title" placeholder="Title">
+        </div>
+        <div id = "new-description-container">
+          <input id = "new-description-text"type="text" name="map_description" placeholder="Description">
+        </div>
+        <div id= "new-city-container">
+          <input id = "new-city-text" id="city-autocomplete" name="city" placeholder="Enter a city" type="text"/>
+        </div>
+
+        <!-- <label for="map_category">category</label> -->
+        <!-- <input id = "new-category-text" type="text" name="category" placeholder="Category"> -->
+
+        <!-- <label for="send map to database">send map to database</label> -->
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary">Save Map</button>
+        </div>
+      </form>
+
+    </div>
+    <div id="map"></div>
+  </div>
+
+
+  <!-- <div id = 'new-map-form' class="container">
+    <div class="w-50 mx-auto my-5 p-3 rounded shadow">
+      <h3>Login</h3>
+      <form action="/api/login" method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" name="email" class="form-control shadow-sm" id="exampleInputEmail1"
+            aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" name="password" class="form-control shadow-sm" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div class="mt-4">
+          <small class="form-text text-muted">Not Registered? <a href="/register">
+              <b>Click here</b> </a></small>
+        </div>
+    </div>
+    </form>
+  </div>
+  </div> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <script src="/scripts/createNewMap.js"></script>
+
+</body>
+
+</html>
