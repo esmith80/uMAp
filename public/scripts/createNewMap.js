@@ -54,6 +54,7 @@ function initMap() {
 
 $(document).ready(() => {
   // get all marker for single map
+
   const mapId = $('#point-form').data('mapid');
   $.get(`/api/pin/${mapId}`).then(({ pins }) => {
     for (const marker of pins) {
@@ -90,7 +91,13 @@ $('.new-map').submit(function (event) {
     );
   }
   const serializedData = $(this).serialize();
-  $.post('/api/map/new', serializedData);
+  $.post('/api/map/new', serializedData)
+  .then(({mapID}) => {
+    console.log('mapID', mapID);
+    window.location.href = window.location.origin + '/api/map/' + mapID;
+   });
+
+
 });
 
 // Create new pin
@@ -121,8 +128,28 @@ $('#point-form').submit(function (event) {
   }
   const serializedData = $(this).serialize();
   const mapId = $('#point-form').data('mapid');
-  $.post(`/api/pin/${mapId}`, serializedData);
+  $.post(`/api/pin/${mapId}`, serializedData)
+  .then((response) => {
+    console.log(response);
+    $("#markers").append(`
+    <li>
+          <div>${this.title.value}</div>
+          <div>${this.description.value}</div>
+          <div>
+            <button class="edit-point-control"
+              data-pindata=${[response.id, mapId, this.latitude.value, this.longitude.value]}>Edit</button>
+            <button class="delete-point-control" data-pinid=${response.id}>DELETE</button>
+          </div>
+        </li>
+    `)
+    listenForEditControl();
+    })
+    // .then(() => {
+      // console.log(mapId);
+      // window.location.href = window.location.origin + '/api/map/' + mapId;
+    //  });
   $(this).children('input').val('');
+
 });
 
 // add  to favorite map
@@ -141,23 +168,28 @@ $('.toggle-fav').click(function () {
 
 // event listener for user clicking Edit Point
 let editFormVisible = false;
+function listenForEditControl() {
 
-$('.edit-point-control').on('click', function (event) {
-  //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
-  if (!editFormVisible) {
-    $('#edit-point-form').slideDown('slow');
-    editFormVisible = true;
-  }
-  // identify the point/pin that was clicked and put all data in pinid button
-  let pinData = $(this).data('pindata').split(',');
+  $('.edit-point-control').on('click', function (event) {
+    console.log('edit-point-control entered');
+    //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+    if (!editFormVisible) {
+      $('#edit-point-form').slideDown('slow');
+      editFormVisible = true;
+    }
+    // identify the point/pin that was clicked and put all data in pinid button
+    let pinData = $(this).data('pindata').split(',');
 
-  const [id, mapId, latitude, longitude] = pinData;
-  //populate form with values from selected point to edit
-  $('#edit-point-id').val(id);
-  $('#edit-point-mapid').val(mapId);
-  $('#edit-point-latitude').val(latitude);
-  $('#edit-point-longitude').val(longitude);
-});
+    const [id, mapId, latitude, longitude] = pinData;
+    //populate form with values from selected point to edit
+    $('#edit-point-id').val(id);
+    $('#edit-point-mapid').val(mapId);
+    $('#edit-point-latitude').val(latitude);
+    $('#edit-point-longitude').val(longitude);
+  });
+}
+
+listenForEditControl();
 
 // event listener for Submit Edit Point
 $('#edit-form').submit(function (event) {
@@ -170,15 +202,26 @@ $('#edit-form').submit(function (event) {
   const mapId = $('#point-form').data('mapid');
   // needs to go to route for pinId, not mapId
   // document.getElementById("#edit-form").reset();
-  $.post(`/api/pin/${mapId}/${pinId}`, serializedData);
-  // need get request to update page after new data is sent to database
-  $.get(`/api/map/${mapId}`);
+  $.post(`/api/pin/${mapId}/${pinId}`, serializedData)
+  .then(() => {
+    window.location.href = window.location.origin + '/api/map/' + mapId;
+   });
 });
 
 $('.delete-point-control').on('click', function (event) {
+  const mapId = $('#point-form').data('mapid');
   let pinId = $(this).data('pinid');
-  $.post(`/api/pin/${pinId}/delete`);
-  $.get('/api/login');
+  $.post(`/api/pin/${pinId}/delete`)
+  .then(() => {
+    console.log(mapId);
+    window.location.href = window.location.origin + '/api/map/' + mapId;
+   });
+
+  // .then( function (response) {
+  // put code to delete pin from DOM THIS
+    // $(`[data-pinid=${pinId}]`).closest('li').remove();
+  // });
+
 });
 
 // toggle create marker form

@@ -48,11 +48,11 @@
 
 .marker-list {
   margin-top: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   ul {
     height: 60vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     list-style: none;
   }
 

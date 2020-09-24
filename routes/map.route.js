@@ -57,7 +57,9 @@ module.exports = (db) => {
     const queryParams = { body: req.body, user: user.userId };
 
     createNewMap(queryParams, db)
-      .then((newMap) => res.redirect(`/api/map/${newMap.id}`))
+      .then((newMap) => {
+        res.json({mapID:newMap.id})
+      })
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });
 
