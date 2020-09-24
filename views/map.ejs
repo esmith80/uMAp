@@ -16,77 +16,58 @@
   <%- include('./partials/_header.ejs') %>
 
   <div id="map"></div>
-  <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
-    <div id="new-point-form">
 
-      <div class="point-form-heder">
-        <button class="add-marker">Add marker</button>
-        <div class="add-fav">
-          <div class="toggle-fav"><i class="far fa-star"></i></div>
-          <div class="type">add to favorive</div>
-        </div>
+  <div id="new-point-form">
+
+    <div class="point-form-heder">
+      <button class="add-marker">Add marker</button>
+      <div class="add-fav">
+        <div class="toggle-fav"><i class="far fa-star"></i></div>
+        <div class="type">add to favorive</div>
       </div>
+    </div>
 
-      <div class="toggle-form">
-        <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
+    <div class="toggle-form">
+      <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
 
-          <label for="point-title">point-title</label>
-          <input type="text" name="title" id="point-title"><br>
+        <div id="pin-title-container">
+          <input type="text" name="title" id="point-title" placeholder="Title">
 
-          <label for="point-description">map_description</label>
-          <input type="text" name="description" id="point-description"><br>
-          <!-- <div>
-    <div class="toggle-fav"><i class="far fa-star"></i></div>
-    <div class="type">add to favorive</div>
-  </div> -->
+        </div>
 
-          <label for="point-latitude">point-latitude</label>
-          <input type="text" name="latitude" id="point-latitude" readonly><br>
+        <div id="pin-description-container">
 
-          <label for="point-longitude">point-longitude</label>
-          <input type="text" name="longitude" id="point-longitude" readonly><br>
+          <input type="text" name="description" id="point-description" placeholder="Description">
+        </div>
+
+        <input type="text" name="latitude" id="point-latitude" readonly>
+
+        <input type="text" name="longitude" id="point-longitude" readonly>
+        <div class="button-container">
 
           <button id="point-submit-button">Save</button>
-        </form>
-      </div>
+        </div>
+      </form>
+    </div>
 
-      <!-- 
-      <div class="marker-list">
-        <ul>
-          <% for(const marker of pins) {%>
-          <li>
-            <div><%= marker.title %></div>
-            <div><%= marker.description %></div>
-            <div>
-              <button>edit</button>
-              <button data-markerid='<%= marker.id %>' class="delete-marker">delete</button>
-            </div>
-          </li>
-          <% } %>
-        </ul>
-      </div>
--->
-      <div id="pin-title-container">
-        <input type="text" name="title" id="point-title" placeholder="Title">
 
-      </div>
-
-      <div id="pin-description-container">
-
-        <input type="text" name="description" id="point-description" placeholder="Description">
-      </div>
-
-      <input type="text" name="latitude" id="point-latitude" readonly>
-
-      <input type="text" name="longitude" id="point-longitude" readonly>
-      <div class="button-container">
-
-        <button id="point-submit-button">Save</button>
-      </div>
-  </form>
-  </div>
+    <div class="marker-list">
+      <ul>
+        <% for(const marker of pins) {%>
+        <li>
+          <div><%= marker.title %></div>
+          <div><%= marker.description %></div>
+          <div>
+            <button>edit</button>
+            <button data-markerid='<%= marker.id %>' class="delete-marker">delete</button>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
 
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
