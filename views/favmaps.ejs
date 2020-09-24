@@ -27,6 +27,13 @@
             <h3><%= map.title %></h3>
             <p><%= map.map_description %></p>
           </div>
+          <div class="card-stats">
+            <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
+            <div class="stat fav" data-mapid="<%= map.id %>">
+              <div class="value"><i class="far fa-star"></i></div>
+              <div class="type">add to favorive</div>
+            </div>
+          </div>
         </div>
       </a>
       <% }%>

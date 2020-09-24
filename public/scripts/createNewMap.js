@@ -127,7 +127,7 @@ $('#point-form').submit(function (event) {
 
 // add  to favorite map
 $('.toggle-fav').click(function () {
-  const mapId = $('#point-form').data('mapid');
+  const mapId = $('.fav').data('mapid');
   $(this).children().toggleClass('far fa-star fas fa-star added');
 
   const added = $(this).children().hasClass('added');
@@ -185,4 +185,12 @@ $('.delete-point-control').on('click', function (event) {
 $('.toggle-form').hide();
 $('.add-marker').click(function () {
   $('.toggle-form').slideToggle(1000);
+});
+
+// delete map
+$('.delete-map-btn').click(function () {
+  const mapId = $(this).attr('data-mapid');
+  $.post(`/api/map/${mapId}/delete`).then((result) => {
+    window.location.href = '/api/map/allmaps';
+  });
 });
