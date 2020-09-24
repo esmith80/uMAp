@@ -15,12 +15,7 @@
   <%- include('./partials/_header.ejs') %>
 
   <main class="container">
-    <div class="map-options">
-      <div class="my-maps"><a href="/api/map">My maps</a></div>
-      <div class="favorite-maps"><a href="/api/map/fav">Favorite maps</a></div>
-      <div class="favorite-maps"><a href="/api/map/contributed">Contributed to</a></div>
-    </div>
-    <h2>Favorite maps</h2>
+    <h2 class="map-title">Favorite maps</h2>
     <div class="cards-list">
       <% for(const map of favMaps) {%>
       <a href="/api/map/<%= map.map_id %>">

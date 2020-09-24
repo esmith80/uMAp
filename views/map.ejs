@@ -24,7 +24,11 @@
     <div class="point-form-heder">
       <button class="add-marker">Add Marker</button>
       <div class="add-fav">
+        <% if(!isFav) {%>
         <div class="toggle-fav"><i class="far fa-star"></i></div>
+        <% } else {%>
+        <div class="toggle-fav"><i class="fas fa-star added"></i></div>
+        <%}%>
         <div class="type">add to favorive</div>
       </div>
 
@@ -52,48 +56,49 @@
             <button id="point-submit-button">Save</button>
           </div>
         </div>
-      </form>
+        </form>
+      </div>
+
+      <div id="edit-point-form" style="display: none">
+        <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
+        <form id="edit-form">
+
+          <label for="point-title">title</label>
+          <input type="text" name="title" id="edit-point-title"><br>
+
+          <label for="point-description">description</label>
+          <input type="text" name="description" id="edit-point-description"><br>
+
+          <label for="point-image-url">image-url</label>
+          <input type="text" name="image_url" id="edit-point-image-url"><br>
+
+          <!-- hidden attributes -->
+          <input type="hidden" name="latitude" id="edit-point-latitude">
+          <input type="hidden" name="longitude" id="edit-point-longitude">
+          <input type="hidden" name="id" id="edit-point-id">
+          <input type="hidden" name="map_id" id="edit-point-mapid">
+
+          <button id="edit-point-submit">Edit</button>
+        </form>
+      </div>
+
+      <div class="marker-list">
+        <ul>
+          <% for(const marker of pins) {%>
+          <li>
+            <div><%= marker.title %></div>
+            <div><%= marker.description %></div>
+            <div>
+              <button class="edit-point-control"
+                data-pindata=<%=[marker.id, marker.map_id, marker.latitude, marker.longitude] %>>Edit</button>
+              <button class="delete-point-control" data-pinid=<%= marker.id %>>DELETE</button>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
     </div>
 
-    <div id="edit-point-form" style="display: none">
-      <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
-      <form id="edit-form">
-
-        <label for="point-title">title</label>
-        <input type="text" name="title" id="edit-point-title"><br>
-
-        <label for="point-description">description</label>
-        <input type="text" name="description" id="edit-point-description"><br>
-
-        <label for="point-image-url">image-url</label>
-        <input type="text" name="image_url" id="edit-point-image-url"><br>
-
-        <!-- hidden attributes -->
-        <input type="hidden" name="latitude" id="edit-point-latitude">
-        <input type="hidden" name="longitude" id="edit-point-longitude">
-        <input type="hidden" name="id" id="edit-point-id">
-        <input type="hidden" name="map_id" id="edit-point-mapid">
-
-        <button id="edit-point-submit">Edit</button>
-      </form>
-    </div>
-
-    <div class="marker-list">
-      <ul>
-        <% for(const marker of pins) {%>
-        <li>
-          <div><%= marker.title %></div>
-          <div><%= marker.description %></div>
-          <div>
-            <button class="edit-point-control"
-              data-pindata=<%=[marker.id, marker.map_id, marker.latitude, marker.longitude] %>>Edit</button>
-            <button class="delete-point-control" data-pinid=<%= marker.id %>>DELETE</button>
-          </div>
-        </li>
-        <% } %>
-      </ul>
-    </div>
-  </div>
 
 
 
@@ -103,12 +108,11 @@
 
 
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
-
-  <script src="/scripts/createNewMap.js"></script>
+    <script src="/scripts/createNewMap.js"></script>
 </body>
 
 </html>
