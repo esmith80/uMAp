@@ -7,7 +7,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <!-- javascript -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&callback=initMap&libraries=&v=weekly" defer></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmmbh4r3EiqD57Jx2Di_XMMwrCvhGPA80&libraries=places"></script>
 
     <!-- stylesheets -->
@@ -46,8 +46,8 @@
         <label for="point-title">point-title</label>
         <input type="text" name="point-title" id="point-title"><br>
 
-        <label for="point-description">map_description</label>
-        <input type="text" name="point-description" id="point-description"><br>
+        <label for="point-description">point_description</label>
+        <input type="textarea" name="point-description" id="point-description"><br>
 
         <label for="point-image-url">point-image-url</label>
         <input type="text" name="point-image-url" id="point-image-url"><br>
@@ -61,8 +61,10 @@
         <input type="submit" id="point-submit-button" value="Save Point"><br>
       </form>
     </div>
-
-    <div id="saved-points"></div>
+    <br>
+    <div id="saved-points">
+      <button id='edit-control'>Edit Points</button><br>
+    </div>
 
 
       <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

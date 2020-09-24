@@ -1,3 +1,7 @@
+// Having an issue where the auto-complete City field and the map do not
+// load together. Issue may be with order of scripts and could be fixed
+// with  jQuery $( document ).ready
+
 // this function creates a new marker (point) (do we need to return it?)
 
 // while a user has not clicked 'save point' change the marker lat-lng to the most recently clicked area on the map
@@ -73,22 +77,21 @@ $('.new-map').submit(function (event) {
   const cityText = $('#new-city-text').val();
   const categoryText = $('new-category-text').val();
   if (titleText === '') {
-    return $('#new-title-container').append($('<p>').addClass('title-error').text("Title can't be blank"))
+    return $('#new-title-container').append(
+      $('<p>').addClass('title-error').text("Title can't be blank")
+    );
   } else if (descriptionText === '') {
-    return $('#new-description-container').append($('<p>').addClass('description-error').text("Description is missing"))
+    return $('#new-description-container').append(
+      $('<p>').addClass('description-error').text('Description is missing')
+    );
   } else if (cityText === '') {
-    return $('#new-city-container').append($('<p>').addClass('city-error').text("City can't be blank"))
+    return $('#new-city-container').append(
+      $('<p>').addClass('city-error').text("City is can't be blank")
+    );
   }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData);
-  window.location.href('/api/map');
 });
-
-// {/* <label for="point-latitude">point-latitude</label>
-// <input type="text" name="latitude" id="point-latitude" readonly><br>
-
-// <label for="point-longitude">point-longitude</label>
-// <input type="text" name="longitude" id="point-longitude" readonly><br> */}
 
 // Create new pin
 $('#point-form').submit(function (event) {
@@ -98,15 +101,23 @@ $('#point-form').submit(function (event) {
   $('.pin-lat-long-error').remove();
   const pinTitleText = $('#point-title').val();
   const pinDescText = $('#point-description').val();
-  const pinLatText = $("#point-latitude").val();
+  const pinLatText = $('#point-latitude').val();
   const pinLongText = $('#point-longitude').val();
 
   if (pinTitleText === '') {
-    return $('#pin-title-container').append($('<p>').addClass('pin-title-error').text("Title can't be blank"))
-  } else if (pinDescText === '' ) {
-    return $('#pin-description-container').append($('<p>').addClass('pin-desc-error').text("Description can't be blank"))
-  } else if (pinLatText === '' || pinLongText === '' ) {
-    return $('#pin-description-container').append($('<p>').addClass('pin-lat-long-error').text("Please select a point on map"))
+    return $('#pin-title-container').append(
+      $('<p>').addClass('pin-title-error').text("Title can't be blank")
+    );
+  } else if (pinDescText === '') {
+    return $('#pin-description-container').append(
+      $('<p>').addClass('pin-desc-error').text("Description can't be blank")
+    );
+  } else if (pinLatText === '' || pinLongText === '') {
+    return $('#pin-description-container').append(
+      $('<p>')
+        .addClass('pin-lat-long-error')
+        .text('Please select a point on map')
+    );
   }
   const serializedData = $(this).serialize();
   const mapId = $('#point-form').data('mapid');
@@ -128,10 +139,54 @@ $('.toggle-fav').click(function () {
   }
 });
 
+// event listener for user clicking Edit Point
+let editFormVisible = false;
+
+$('.edit-point-control').on('click', function (event) {
+  //if this form is not showing, display it. If it is already showing for another point that was not submitted, keep showing it
+  if (!editFormVisible) {
+    $('#edit-point-form').slideDown('slow');
+    editFormVisible = true;
+  }
+  // identify the point/pin that was clicked and put all data in pinid button
+  let pinData = $(this).data('pindata').split(',');
+
+  const [id, mapId, latitude, longitude] = pinData;
+  //populate form with values from selected point to edit
+  $('#edit-point-id').val(id);
+  $('#edit-point-mapid').val(mapId);
+  $('#edit-point-latitude').val(latitude);
+  $('#edit-point-longitude').val(longitude);
+});
+
+// event listener for Submit Edit Point
+$('#edit-form').submit(function (event) {
+  event.preventDefault();
+  $('#edit-form').slideUp('slow');
+  const serializedData = $(this).serialize();
+  // how are we getting map id and pin id
+
+  const pinId = $('#edit-point-id').val();
+  const mapId = $('#point-form').data('mapid');
+  // needs to go to route for pinId, not mapId
+  // document.getElementById("#edit-form").reset();
+  $.post(`/api/pin/${mapId}/${pinId}`, serializedData);
+  // need get request to update page after new data is sent to database
+  $.get(`/api/map/${mapId}`);
+});
+
+$('.delete-point-control').on('click', function (event) {
+  let pinId = $(this).data('pinid');
+  $.post(`/api/pin/${pinId}/delete`);
+  $.get('/api/login');
+});
+
 // toggle create marker form
+$('.toggle-form').hide();
 $('.add-marker').click(function () {
   $('.toggle-form').slideToggle(1000);
 });
+<<<<<<< HEAD
 
 // delete marker
 // const markerid = [];
@@ -151,3 +206,5 @@ const pinId = $(this).attr('data-markerid')
 //   var data = $.parseJSON($(this).attr('data-button'));
 //   alert(data.option1)
 // });
+=======
+>>>>>>> 25f235afbc16026a867e9e1e569182b3c14506d2
