@@ -133,12 +133,19 @@ $('.add-marker').click(function () {
 });
 
 // delete marker
-const markerid = [];
-$('.delete-marker').click(() => {
-  $('.delete-marker');
+// const markerid = [];
+$('.delete-marker').click(function () {
+console.log($(this))
+let data = $(this).attr('data-markerid')
+console.log(data);
+ $('.delete-marker')
 });
 // need an autocomplete field that filters for cities
 // let autocomplete = new google.maps.places.Autocomplete(
 //   document.getElementById('city-autocomplete')
 // )
 
+// $('button').click(function(){
+//   var data = $.parseJSON($(this).attr('data-button'));
+//   alert(data.option1)
+// });
