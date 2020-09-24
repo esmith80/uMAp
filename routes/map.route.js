@@ -6,7 +6,11 @@ const {
   createNewMap,
   updateMapByID,
   deleteMapByID,
+  addMapToFavorite,
+  removeMapFromFavorite,
+  getFavoriteMaps,
 } = require('../db/queries/map.queries');
+const { getAllPins } = require('../db/queries/pin.queries');
 
 module.exports = (db) => {
   //api/map
@@ -27,12 +31,24 @@ module.exports = (db) => {
 
   router.get('/fav', (req, res) => {
     const user = req.session.user;
-    res.render('favmaps', { user });
+    getFavoriteMaps(user.userId, db).then((favMaps) => {
+      res.render('favmaps', { user, favMaps });
+    });
+  });
+
+  router.post('/fav', (req, res) => {
+    const { userId } = req.session.user;
+    const { mapId } = req.body;
+    addMapToFavorite(mapId, userId, db);
+  });
+
+  router.post('/fav/delete', (req, res) => {
+    const { mapId } = req.body;
+    removeMapFromFavorite(mapId, db);
   });
 
   router.get('/new', (req, res) => {
     const user = req.session.user;
-    console.log;
     res.render('createMap', { user });
   });
 
@@ -41,9 +57,7 @@ module.exports = (db) => {
     const queryParams = { body: req.body, user: user.userId };
 
     createNewMap(queryParams, db)
-      .then((newMap) => {
-        res.redirect(`/api/map/${newMap.id}`);
-      })
+      .then((newMap) => res.redirect(`/api/map/${newMap.id}`))
       .catch((err) => res.status(500).json({ msg: 'failed to add new map' }));
   });
 
@@ -51,7 +65,9 @@ module.exports = (db) => {
     const user = req.session.user;
     getMapByID(req.params.id, db)
       .then((map) => {
-        res.render('map', { map, user });
+        getAllPins(map.id, db).then((pins) => {
+          res.render('map', { map, user, pins });
+        });
       })
       .catch((err) =>
         res.status(500).json({ msg: 'failed to get single map table' })
