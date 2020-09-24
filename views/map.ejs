@@ -16,7 +16,6 @@
   <%- include('./partials/_header.ejs') %>
 
   <div id="map"></div>
-
   <form method="POST" action="/api/pin/<%= map.id %>" id="point-form" data-mapId=<%= map.id %>>
     <div id="new-point-form">
 
@@ -36,6 +35,10 @@
 
           <label for="point-description">map_description</label>
           <input type="text" name="description" id="point-description"><br>
+          <!-- <div>
+    <div class="toggle-fav"><i class="far fa-star"></i></div>
+    <div class="type">add to favorive</div>
+  </div> -->
 
           <label for="point-latitude">point-latitude</label>
           <input type="text" name="latitude" id="point-latitude" readonly><br>
@@ -47,6 +50,7 @@
         </form>
       </div>
 
+      <!-- 
       <div class="marker-list">
         <ul>
           <% for(const marker of pins) {%>
@@ -61,16 +65,34 @@
           <% } %>
         </ul>
       </div>
-    </div>
+-->
+      <div id="pin-title-container">
+        <input type="text" name="title" id="point-title" placeholder="Title">
 
-    </div>
+      </div>
 
+      <div id="pin-description-container">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+        <input type="text" name="description" id="point-description" placeholder="Description">
+      </div>
 
-    <script src="/scripts/createNewMap.js"></script>
+      <input type="text" name="latitude" id="point-latitude" readonly>
+
+      <input type="text" name="longitude" id="point-longitude" readonly>
+      <div class="button-container">
+
+        <button id="point-submit-button">Save</button>
+      </div>
+  </form>
+  </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+
+  <script src="/scripts/createNewMap.js"></script>
 </body>
 
 </html>

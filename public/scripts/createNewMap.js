@@ -80,17 +80,42 @@ $('.new-map').submit(function (event) {
       $('<p>').addClass('description-error').text('Description is missing')
     );
   } else if (cityText === '') {
+<<<<<<< HEAD
     return $('#new-city-container').append(
       $('<p>').addClass('city-error').text("City is can't be blank")
     );
+=======
+    return $('#new-city-container').append($('<p>').addClass('city-error').text("City can't be blank"))
+>>>>>>> c7d2bdb0d503fe1fec022262ab7bf439bbf1db5c
   }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData);
 });
 
+// {/* <label for="point-latitude">point-latitude</label>
+// <input type="text" name="latitude" id="point-latitude" readonly><br>
+
+// <label for="point-longitude">point-longitude</label>
+// <input type="text" name="longitude" id="point-longitude" readonly><br> */}
+
 // Create new pin
 $('#point-form').submit(function (event) {
   event.preventDefault();
+  $('.pin-title-error').remove();
+  $('.pin-desc-error').remove();
+  $('.pin-lat-long-error').remove();
+  const pinTitleText = $('#point-title').val();
+  const pinDescText = $('#point-description').val();
+  const pinLatText = $("#point-latitude").val();
+  const pinLongText = $('#point-longitude').val();
+
+  if (pinTitleText === '') {
+    return $('#pin-title-container').append($('<p>').addClass('pin-title-error').text("Title can't be blank"))
+  } else if (pinDescText === '' ) {
+    return $('#pin-description-container').append($('<p>').addClass('pin-desc-error').text("Description can't be blank"))
+  } else if (pinLatText === '' || pinLongText === '' ) {
+    return $('#pin-description-container').append($('<p>').addClass('pin-lat-long-error').text("Please select a point on map"))
+  }
   const serializedData = $(this).serialize();
   const mapId = $('#point-form').data('mapid');
   $.post(`/api/pin/${mapId}`, serializedData);
@@ -117,11 +142,16 @@ $('.add-marker').click(function () {
 });
 
 // delete marker
-const markerid = [];
-$('.delete-marker').click(() => {
-  console.log($('.delete-marker').data('markerid'));
+
+// const markerid = [];
+$('.delete-marker').click(function () {
+console.log($(this))
+let data = $(this).attr('data-markerid')
+console.log(data);
+ $('.delete-marker')
 });
 // need an autocomplete field that filters for cities
 // let autocomplete = new google.maps.places.Autocomplete(
 //   document.getElementById('city-autocomplete')
 // )
+
