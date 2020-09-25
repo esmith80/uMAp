@@ -3,6 +3,8 @@
     <nav>
       <div class="nav-menu">
         <h1 class="logo">UMap</h1>
+
+        <% if(user.userId !== 'hello') {%>
         <ul>
           <li class="nav-btn"><a href="/api/map/allmaps">Home</a></li>
           <li class="nav-btn"><a href="/api/map/new">New Map</a></li>
@@ -16,6 +18,7 @@
             </div>
           </li>
         </ul>
+        <% } %>
       </div>
       <ul>
         <li>
