@@ -3,6 +3,8 @@
     <nav>
       <div class="nav-menu">
         <h1 class="logo">UMap</h1>
+
+        <% if(user.userId !== 'hello') {%>
         <ul>
           <li class="nav-btn"><a href="/api/map/allmaps">Home</a></li>
           <li class="nav-btn"><a href="/api/map/new">New Map</a></li>
@@ -10,12 +12,14 @@
             <div class="dropdown">
               <button class="dropbtn">Maps</button>
               <div class="dropdown-content">
+                <a href="/api/map/mymaps">My Maps</a>
                 <a href="/api/map/fav">Favorite maps</a>
                 <a href="/api/map/contributed">Contributed to</a>
               </div>
             </div>
           </li>
         </ul>
+        <% } %>
       </div>
       <ul>
         <li>

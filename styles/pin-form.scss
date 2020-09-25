@@ -46,13 +46,14 @@ input {
   border-left-style: hidden;
   border-bottom-style: groove;
   outline:none;
-
 }
 
 .toggle-form {
   display:flex;
   flex-direction: column;
-  // background-color: #faf9ed;
+  border-radius:10px;
+  border: 1px solid black;
+  margin:5px auto;
 
   .button-container {
     display:flex;
@@ -60,11 +61,13 @@ input {
   }
 
   button {
-    width: 60px;
-    margin: 15px;
-
+    border-radius: 8px;
+    background-color: #333;
+    color: #fff;
+    width: 20%;
+    height: 20px;
+    margin: 10px auto;
   }
-
 }
 
 .pin-title-error,

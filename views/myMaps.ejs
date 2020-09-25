@@ -15,21 +15,30 @@
   <%- include('./partials/_header.ejs') %>
 
   <main class="container">
-    <h2 class="map-title">My maps</h2>
+    <h2 class="map-title">My Maps</h2>
     <div class="cards-list">
       <% for(const map of userMaps) {%>
-      <a href="/api/map/<%= map.id %>">
-        <div class="card">
-          <div class="card-image">
-          </div>
+      <div class="card">
+        <div class="card-image">
+        </div>
+        <div class="card-text">
+          <h3><%= map.title %></h3>
+          <p><%= map.map_description %></p>
 
-          <div class="card-text">
-            <h3><%= map.title %></h3>
-            <p><%= map.map_description %></p>
+          <a href="/api/map/<%= map.id %>">go to <i class="fas fa-map-marked-alt"></i></a>
+        </div>
+        <div class="card-stats">
+          <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
+          <div class="stat fav" data-mapid="<%= map.id %>">
+            <div data-mapid="<%= map.id %>" class="value toggle-fav"><i class="far fa-star"></i></div>
+            <div class="type">add to favorive</div>
           </div>
         </div>
-      </a>
+      </div>
       <% } %>
+    </div>
+
+
     </div>
     </div>
 
@@ -40,7 +49,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
-  <script src="/scripts/helpers.js"></script>
+  <script src="/scripts/createNewMap.js"></script>
 </body>
 
 </html>

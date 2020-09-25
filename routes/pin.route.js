@@ -21,7 +21,6 @@ module.exports = (db) => {
   router.post('/:mapId', (req, res) => {
     const { mapId } = req.params;
     const { userId } = req.session.user;
-
     createNewPin(req.body, mapId, userId, db)
       .then((pin) => res.status(200).json(pin))
       .catch((err) => res.status(500).json({ msg: 'fail to add a pin' }));

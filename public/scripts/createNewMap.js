@@ -12,6 +12,7 @@ const addMarker = (props) => {
   new google.maps.Marker({
     position: props.coords,
     map: map,
+    content: props.infoWindow
   });
 };
 
@@ -37,6 +38,7 @@ function initMap() {
         $('#point-latitude').attr('value', lat);
         $('#point-longitude').attr('value', lng);
       });
+
     },
 
     () => {
@@ -52,11 +54,14 @@ function initMap() {
   );
 }
 
+
+
 $(document).ready(() => {
   // get all marker for single map
 
   const mapId = $('#point-form').data('mapid');
   $.get(`/api/pin/${mapId}`).then(({ pins }) => {
+
     for (const marker of pins) {
       centerMap = {
         lat: Number(marker.latitude),
@@ -66,10 +71,21 @@ $(document).ready(() => {
         lat: Number(marker.latitude),
         lng: Number(marker.longitude),
       };
-      addMarker({ coords });
+      const infoWindow = new google.maps.InfoWindow({
+        position: { lat: Number(marker.latitude), lng: Number(marker.longitude) },
+        map: map,
+        content: `<p style="font-weight: bold; text-align: center; margin-bottom: 2px">${marker.title}</p>
+        <img class="infoWindow" src="${marker.image_url}" width="75" height="75">
+        `
+      });
+      addMarker({ coords, infoWindow });
     }
+
+
   });
+
 });
+
 
 // create map
 $('.new-map').submit(function (event) {
@@ -80,7 +96,8 @@ $('.new-map').submit(function (event) {
   const titleText = $('#new-title-text').val();
   const descriptionText = $('#new-description-text').val();
   const cityText = $('#new-city-text').val();
-  const categoryText = $('new-category-text').val();
+  const imgText = $('#new-image-URL').val();
+console.log(imgText)
   if (titleText === '') {
     return $('#new-title-container').append(
       $('<p>').addClass('title-error').text("Title can't be blank")
@@ -93,6 +110,8 @@ $('.new-map').submit(function (event) {
     return $('#new-city-container').append(
       $('<p>').addClass('city-error').text("City is can't be blank")
     );
+  } else if(imgText === '') {
+    document.getElementById('new-image-URL').value = 'https://picsum.photos/200/300';
   }
   const serializedData = $(this).serialize();
   $.post('/api/map/new', serializedData).then(({ mapID }) => {
@@ -106,12 +125,10 @@ $('#point-form').submit(function (event) {
   event.preventDefault();
   $('.pin-title-error').remove();
   $('.pin-desc-error').remove();
-  $('.pin-img-error').remove();
   $('.pin-lat-long-error').remove();
   const pinTitleText = $('#point-title').val();
   const pinDescText = $('#point-description').val();
   const pinImgText = $('#point-image').val();
-  console.log(pinImgText);
   const pinLatText = $('#point-latitude').val();
   const pinLongText = $('#point-longitude').val();
 
@@ -124,9 +141,8 @@ $('#point-form').submit(function (event) {
       $('<p>').addClass('pin-desc-error').text("Description can't be blank")
     );
   } else if (pinImgText === '') {
-    return $('#pin-image-container').append(
-      $('<p>').addClass('pin-img-error').text('Please add an image')
-    );
+    // pinImgText = 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg';
+    return document.getElementById("point-image").value = 'https://www.coburns.com/images/no-image.png?width=500&height=500&mode=max'
   } else if (pinLatText === '' || pinLongText === '') {
     return $('#pin-image-container').append(
       $('<p>')
@@ -165,7 +181,8 @@ $('#point-form').submit(function (event) {
 
 // add  to favorite map
 $('.toggle-fav').click(function () {
-  const mapId = $('.fav').data('mapid');
+  const mapId = $(this).attr('data-mapid');
+  console.log('fire');
   $(this).children().toggleClass('far fa-star fas fa-star added');
 
   const added = $(this).children().hasClass('added');

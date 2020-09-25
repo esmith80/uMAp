@@ -15,12 +15,18 @@ const {
 } = require('../db/queries/map.queries');
 const { getAllPins } = require('../db/queries/pin.queries');
 
+const isFav = (allMaps, db) => {
+  const mapsIds = allMaps.filter((map) => checkIfFavorite(map.id, db));
+  console.log('che', mapsIds);
+};
+
 module.exports = (db) => {
   //api/map
   router.get('/allmaps', (req, res) => {
     const user = req.session.user;
 
     getAllMaps(db).then((allMaps) => {
+      isFav(allMaps, db);
       const vars = { user, allMaps };
       res.render('index', vars);
     });
@@ -28,13 +34,17 @@ module.exports = (db) => {
 
   router.get('/contributed', (req, res) => {
     const user = req.session.user;
-    getContributedMapsByUserID(user.userId, db).then((maps) => {
+    getContributedMapsByUserID(user.userId, db).then((allMaps) => {
+      const filterDublicated = () => {
+        return [...new Map(allMaps.map((el) => [el['id'], el])).values()];
+      };
+      const maps = filterDublicated();
       const vars = { user, maps };
       res.render('contibutedMaps', vars);
     });
   });
 
-  router.get('/', (req, res) => {
+  router.get('/mymaps', (req, res) => {
     const user = req.session.user;
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
@@ -42,7 +52,7 @@ module.exports = (db) => {
     getMapsByUserId(user.userId, db)
       .then((userMaps) => {
         const vars = { user, userMaps };
-        res.render('userMaps', vars);
+        res.render('myMaps', vars);
       })
       .catch((err) =>
         res.status(500).json({ msg: 'failed to load maps table' })

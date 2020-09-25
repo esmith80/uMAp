@@ -19,7 +19,6 @@
     <h2 class="map-title">Contributed to</h2>
     <div class="cards-list">
       <% for(const map of maps) {%>
-
       <div class="card">
         <div class="card-image">
         </div>
@@ -28,14 +27,14 @@
           <h3><%= map.title %></h3>
           <p><%= map.map_description %></p>
 
-          <a href="/api/map/<%= map.id %>">go to</a>
+          <a href="/api/map/<%= map.id %>">go to <i class="fas fa-map-marked-alt"></i></a>
 
         </div>
         <div class="card-stats">
           <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
           <div class="stat fav" data-mapid="<%= map.id %>">
             <div class="value"><i class="far fa-star"></i></div>
-            <div class="type">add to favorive</div>
+            <div class="type">Add to My Favourites</div>
           </div>
         </div>
 
