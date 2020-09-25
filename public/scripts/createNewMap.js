@@ -165,7 +165,8 @@ $('#point-form').submit(function (event) {
 
 // add  to favorite map
 $('.toggle-fav').click(function () {
-  const mapId = $('.fav').data('mapid');
+  const mapId = $(this).attr('data-mapid');
+  console.log('fire');
   $(this).children().toggleClass('far fa-star fas fa-star added');
 
   const added = $(this).children().hasClass('added');

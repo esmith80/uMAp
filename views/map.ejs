@@ -25,11 +25,10 @@
       <button class="add-marker">Add Marker</button>
       <div class="add-fav">
         <% if(!isFav) {%>
-        <div class="toggle-fav"><i class="far fa-star"></i></div>
+        <div data-mapid=<%= map.id %> class="toggle-fav"><i class="far fa-star"></i></div>
         <% } else {%>
-        <div class="toggle-fav"><i class="fas fa-star added"></i></div>
+        <div data-mapid=<%= map.id %> class="toggle-fav"><i class="fas fa-star added"></i></div>
         <%}%>
-        <div class="type">add to favorive</div>
       </div>
 
     </div>
