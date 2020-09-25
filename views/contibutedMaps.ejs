@@ -21,6 +21,7 @@
       <% for(const map of maps) {%>
       <div class="card">
         <div class="card-image">
+          <img src="<%= map.map_picture %>" alt="Map Image">
         </div>
 
         <div class="card-text">
@@ -34,7 +35,7 @@
           <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
           <div class="stat fav" data-mapid="<%= map.id %>">
             <div class="value"><i class="far fa-star"></i></div>
-            <div class="type">Add to My Favourites</div>
+            <div class="type">Favourites</div>
           </div>
         </div>
 
