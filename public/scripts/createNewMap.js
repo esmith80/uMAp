@@ -12,6 +12,7 @@ const addMarker = (props) => {
   new google.maps.Marker({
     position: props.coords,
     map: map,
+    content: props.infoWindow
   });
 };
 
@@ -37,6 +38,7 @@ function initMap() {
         $('#point-latitude').attr('value', lat);
         $('#point-longitude').attr('value', lng);
       });
+
     },
 
     () => {
@@ -52,11 +54,14 @@ function initMap() {
   );
 }
 
+
+
 $(document).ready(() => {
   // get all marker for single map
 
   const mapId = $('#point-form').data('mapid');
   $.get(`/api/pin/${mapId}`).then(({ pins }) => {
+
     for (const marker of pins) {
       centerMap = {
         lat: Number(marker.latitude),
@@ -66,10 +71,21 @@ $(document).ready(() => {
         lat: Number(marker.latitude),
         lng: Number(marker.longitude),
       };
-      addMarker({ coords });
+      const infoWindow = new google.maps.InfoWindow({
+        position: { lat: Number(marker.latitude), lng: Number(marker.longitude) },
+        map: map,
+        content: `<p style="font-weight: bold; text-align: center; margin-bottom: 2px">${marker.title}</p>
+        <img class="infoWindow" src="${marker.image_url}" width="75" height="75">
+        `
+      });
+      addMarker({ coords, infoWindow });
     }
+
+
   });
+
 });
+
 
 // create map
 $('.new-map').submit(function (event) {
