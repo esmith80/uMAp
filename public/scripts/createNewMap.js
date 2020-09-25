@@ -12,7 +12,7 @@ const addMarker = (props) => {
   new google.maps.Marker({
     position: props.coords,
     map: map,
-    content: '<h1>Content</h1>'
+    content: props.infoWindow
   });
 };
 
@@ -38,6 +38,7 @@ function initMap() {
         $('#point-latitude').attr('value', lat);
         $('#point-longitude').attr('value', lng);
       });
+
     },
 
     () => {
@@ -52,6 +53,8 @@ function initMap() {
     }
   );
 }
+
+
 
 $(document).ready(() => {
   // get all marker for single map
@@ -68,29 +71,20 @@ $(document).ready(() => {
         lat: Number(marker.latitude),
         lng: Number(marker.longitude),
       };
-      addMarker({ coords });
-      console.log(marker);
-      new google.maps.InfoWindow({
+      const infoWindow = new google.maps.InfoWindow({
         position: { lat: Number(marker.latitude), lng: Number(marker.longitude) },
         map: map,
-        content: ` <h4>${marker.title}</h4>
-                   <img src="${marker.image_url}" width="100" height="100">
-                   <span>${marker.description}</span>
-                 `
+        content: `<p style="font-weight: bold; text-align: center; margin-bottom: 2px">${marker.title}</p>
+        <img class="infoWindow" src="${marker.image_url}" width="75" height="75">
+        `
       });
+      addMarker({ coords, infoWindow });
     }
-    marker.addListener("click", () => {
-      infowindow.open(map, marker);
-    });
-    // I read on stack overflow that this should do something but it doesn't seem to
-    map.addListener('click', function() {
-      if (infoWindow) infoWindow.close();
-  });
+
 
   });
+
 });
-
-
 
 
 // create map
