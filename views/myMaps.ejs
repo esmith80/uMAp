@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+    rel="stylesheet">
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <title>Umap</title>
+</head>
+
+<body>
+  <%- include('./partials/_header.ejs') %>
+
+  <main class="container">
+    <h2 class="map-title">My Maps</h2>
+    <div class="cards-list">
+      <% for(const map of userMaps) {%>
+      <div class="card">
+        <div class="card-image">
+        </div>
+        <div class="card-text">
+          <h3><%= map.title %></h3>
+          <p><%= map.map_description %></p>
+
+          <a href="/api/map/<%= map.id %>">go to</a>
+        </div>
+        <div class="card-stats">
+          <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
+          <div class="stat fav" data-mapid="<%= map.id %>">
+            <div data-mapid="<%= map.id %>" class="value toggle-fav"><i class="far fa-star"></i></div>
+            <div class="type">add to favorive</div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+
+    </div>
+    </div>
+
+  </main>
+  <!-- <footer>
+
+        </footer> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f60010782b.js" crossorigin="anonymous"></script>
+  <script src="/scripts/createNewMap.js"></script>
+</body>
+
+</html>

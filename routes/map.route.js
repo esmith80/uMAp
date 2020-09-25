@@ -44,7 +44,7 @@ module.exports = (db) => {
     });
   });
 
-  router.get('/', (req, res) => {
+  router.get('/mymaps', (req, res) => {
     const user = req.session.user;
     if (!user) {
       return res.status(400).json({ msg: 'User should be logged in!' });
@@ -52,7 +52,7 @@ module.exports = (db) => {
     getMapsByUserId(user.userId, db)
       .then((userMaps) => {
         const vars = { user, userMaps };
-        res.render('userMaps', vars);
+        res.render('myMaps', vars);
       })
       .catch((err) =>
         res.status(500).json({ msg: 'failed to load maps table' })
