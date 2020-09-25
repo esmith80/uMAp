@@ -64,18 +64,22 @@
       <div id="edit-point-form" style="display: none">
         <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
         <form id="edit-form">
-
-          <input type="text" name="title" id="edit-point-title" placeholder="New Title">
-
-          <input type="text" name="description" id="edit-point-description" placeholder="New Description">
-
+          <div class= "edit-container">
+            <input type="text" name="title" id="edit-point-title" placeholder="New Title">
+          </div>
+      <div class= "edit-container">
+        <input type="text" name="description" id="edit-point-description" placeholder="New Description">
+      </div>
+        <div class= "edit-container">
           <input type="text" name="image_url" id="edit-point-image-url" placeholder="New Image URL">
 
+        </div>
+
           <!-- hidden attributes -->
-          <input type="hidden" name="latitude" id="edit-point-latitude">
-          <input type="hidden" name="longitude" id="edit-point-longitude">
-          <input type="hidden" name="id" id="edit-point-id">
-          <input type="hidden" name="map_id" id="edit-point-mapid">
+          <input name="latitude" id="edit-point-latitude">
+          <input name="longitude" id="edit-point-longitude">
+          <input name="id" id="edit-point-id">
+          <input name="map_id" id="edit-point-mapid">
 
           <button id="edit-point-submit">Save</button>
           <button id="cancel-edit">Cancel</button>

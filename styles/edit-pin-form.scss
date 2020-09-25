@@ -1,28 +1,21 @@
-// <div id="edit-point-form" style="display: none">
-// <!-- not sure if form action path is correct - how to specify for routing to update correct db record? -->
-// <form id="edit-form">
 
-//   <label for="point-title">title</label>
-//   <input type="text" name="title" id="edit-point-title"><br>
+#edit-point-latitude,
+#edit-point-longitude,
+#edit-point-id,
+#edit-point-mapid {
+display:none;
+}
 
-//   <label for="point-description">description</label>
-//   <input type="text" name="description" id="edit-point-description"><br>
+#edit-form {
+  width:100%
+}
 
-//   <label for="point-image-url">image-url</label>
-//   <input type="text" name="image_url" id="edit-point-image-url"><br>
-
-//   <!-- hidden attributes -->
-//   <input type="hidden" name="latitude" id="edit-point-latitude">
-//   <input type="hidden" name="longitude" id="edit-point-longitude">
-//   <input type="hidden" name="id" id="edit-point-id">
-//   <input type="hidden" name="map_id" id="edit-point-mapid">
-
-//   <button id="edit-point-submit">Edit</button>
-// </form>
-// </div>
 #edit-point-form {
   display:flex;
   justify-content: column;
+  border-radius:10px;
+  border: 1px solid black;
+  margin-bottom: 5px auto;
 
   input {
     border-top-style: hidden;
@@ -30,12 +23,43 @@
     border-left-style: hidden;
     border-bottom-style: groove;
     outline:none;
-    width:90%;
 
   }
 
-  button{
+  button {
     margin:5px auto;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    width: 20%;
+    height: 20px;
+    margin: 10px 10px;
   }
 
 }
+
+
+.edit-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  #edit-point-title {
+    width:90%;
+    height:25px;
+    margin: 5px;
+  }
+
+  #edit-point-description {
+    width:90%;
+    height:25px;
+    margin:5px;
+  }
+  #edit-point-image-url {
+    width:90%;
+    height:25px;
+    margin:5px;
+  }
+}
+
+
