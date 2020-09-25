@@ -29,13 +29,15 @@
 }
 
 
-.card-image {
+.card-image img {
   grid-area: image;
-  background: url('https://picsum.photos/350/210');
+  // background: url('https://picsum.photos/350/210');
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   background-size: cover;
   position: relative;
+  width: 350px;
+  height: 210px;
 }
 
 .card-text {

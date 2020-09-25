@@ -21,6 +21,7 @@
       <% console.log(map) %>
       <div class="card">
         <div class="card-image">
+          <img src="<%= map.map_picture %>" alt="Map Image">
         </div>
         <div class="card-text">
           <h3><%= map.title %></h3>
@@ -32,7 +33,7 @@
           <button data-mapid="<%= map.id %>" class="delete-map-btn">DELETE MAP</button>
           <div class="stat fav" data-mapid="<%= map.id %>">
             <div data-mapid="<%= map.id %>" class="value toggle-fav"><i class="far fa-star"></i></div>
-            <div class="type">add to favorive</div>
+            <div class="type">Favourite</div>
           </div>
         </div>
       </div>
