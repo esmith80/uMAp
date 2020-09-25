@@ -12,6 +12,7 @@ const addMarker = (props) => {
   new google.maps.Marker({
     position: props.coords,
     map: map,
+    content: '<h1>Content</h1>'
   });
 };
 
@@ -57,6 +58,7 @@ $(document).ready(() => {
 
   const mapId = $('#point-form').data('mapid');
   $.get(`/api/pin/${mapId}`).then(({ pins }) => {
+
     for (const marker of pins) {
       centerMap = {
         lat: Number(marker.latitude),
@@ -67,9 +69,29 @@ $(document).ready(() => {
         lng: Number(marker.longitude),
       };
       addMarker({ coords });
+      console.log(marker);
+      new google.maps.InfoWindow({
+        position: { lat: Number(marker.latitude), lng: Number(marker.longitude) },
+        map: map,
+        content: ` <h4>${marker.title}</h4>
+                   <img src="${marker.image_url}" width="100" height="100">
+                   <span>${marker.description}</span>
+                 `
+      });
     }
+    marker.addListener("click", () => {
+      infowindow.open(map, marker);
+    });
+    // I read on stack overflow that this should do something but it doesn't seem to
+    map.addListener('click', function() {
+      if (infoWindow) infoWindow.close();
+  });
+
   });
 });
+
+
+
 
 // create map
 $('.new-map').submit(function (event) {
